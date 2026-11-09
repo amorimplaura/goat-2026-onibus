@@ -111,3 +111,10 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
  .contact strong{font-size:14px}
  .card-inner strong{font-size:43px}
 }
+
+/* Segurança visual: cartões sempre visíveis, mesmo sem JavaScript */
+#cards.bus-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;min-height:130px;visibility:visible!important;opacity:1!important}
+#cards>.card{display:block!important;visibility:visible!important;opacity:1!important;position:relative!important;min-height:130px;background:#fff!important;border:2px solid #cbdaf0;border-radius:9px;color:#153f86;cursor:pointer}
+#cards>.card .card-inner{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+#cards>.card .card-inner p{font-size:12px;line-height:1.4;font-weight:700}
+@media(max-width:700px){#cards.bus-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}#cards>.card{min-height:124px}}
