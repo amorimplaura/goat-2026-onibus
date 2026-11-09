@@ -5,7 +5,7 @@ const busca=document.querySelector("#pesquisa"),resultados=document.querySelecto
 const bus=n=>"ÔNIBUS "+String(n).padStart(2,"0");
 const locais={
   1:{rua:"Rua Jornalista Milton Amado",url:"https://www.google.com/maps/search/?api=1&query=Rua%20Jornalista%20Milton%20Amado%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG"},
-  2:{rua:"Rua José Motta Magalhães",url:"https://www.google.com/maps/search/?api=1&query=Rua%20Jos%C3%A9%20Motta%20Magalh%C3%A3es%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG"}
+  2:{rua:"Rua José Mota Magalhães",url:"https://www.google.com/maps/search/?api=1&query=Rua%20Jos%C3%A9%20Mota%20Magalh%C3%A3es%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG"}
 };
 const local=n=>n<=6?locais[1]:locais[2];
 function pesquisar(){
