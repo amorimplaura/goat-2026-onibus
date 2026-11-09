@@ -9,19 +9,32 @@ const locais={
 };
 const local=n=>n<=6?locais[1]:locais[2];
 function pesquisar(){
-  const q=norm(busca.value);resultados.replaceChildren();
-  if(!q)return;
-  const encontrados=dados.filter(p=>norm(p.nome).includes(q)).slice(0,30);
-  if(!encontrados.length){resultados.innerHTML='<p class="empty">Nome não encontrado. Tente só o primeiro nome ou sobrenome.</p>';return}
-  const titulo=document.createElement("p");titulo.className="search-results-title";titulo.textContent="Toque no nome para ver a lista completa do ônibus:";resultados.appendChild(titulo);
-  for(const p of encontrados){
-    const b=document.createElement("button");b.type="button";b.className="search-person";
-    b.innerHTML='<span class="search-person-name">'+esc(p.nome)+'</span><span class="search-person-bus">'+bus(p.onibus)+' <span aria-hidden="true">›</span></span>';
-    b.setAttribute("aria-label","Ver lista completa do "+bus(p.onibus)+" com "+p.nome);
-    b.addEventListener("click",()=>{busca.blur();abrir(Number(p.onibus),p.nome)});
-    resultados.appendChild(b);
-  }
-  if(encontrados.length===30){const t=document.createElement("p");t.className="consult-tip";t.textContent="Muitos nomes encontrados. Digite mais letras.";resultados.appendChild(t)}
+ const q=norm(busca.value);resultados.replaceChildren();
+ if(!q)return;
+ const encontrados=dados.filter(p=>norm(p.nome).includes(q)).slice(0,30);
+ if(!encontrados.length){resultados.innerHTML='<p class="empty">Não encontramos esse nome. Tente apenas o sobrenome.</p>';return}
+ const titulo=document.createElement("p");titulo.className="search-results-title";titulo.textContent=encontrados.length===1?"Encontramos esta criança:":"Escolha a criança na lista abaixo:";resultados.appendChild(titulo);
+ for(const p of encontrados){
+  const b=document.createElement("button");b.type="button";b.className="search-person";
+  b.innerHTML='<span class="search-person-name">'+esc(p.nome)+'</span><span class="search-person-bus">'+bus(p.onibus)+' <span aria-hidden="true">›</span></span>';
+  b.setAttribute("aria-label","Mostrar ônibus e colegas de "+p.nome);
+  b.addEventListener("click",()=>{busca.blur();mostrarResultado(p)});
+  resultados.appendChild(b);
+ }
+ if(encontrados.length===30){const t=document.createElement("p");t.className="consult-tip";t.textContent="Muitos resultados. Digite mais letras.";resultados.appendChild(t)}
+}
+function mostrarResultado(crianca){
+ const n=Number(crianca.onibus),l=local(n),pessoas=dados.filter(p=>Number(p.onibus)===n);
+ resultados.replaceChildren();
+ const detalhe=document.createElement("section");detalhe.className="inline-detail";detalhe.setAttribute("aria-label","Resultado da consulta");
+ detalhe.innerHTML='<div class="inline-detail-head"><small>RESULTADO DA CONSULTA</small><button type="button" class="change-search">ALTERAR NOME ×</button></div>'+
+ '<h3 class="child-name">'+esc(crianca.nome)+'</h3>'+
+ '<div class="inline-bus"><small>ÔNIBUS DA CRIANÇA</small><strong>'+bus(n)+'</strong></div>'+
+ '<div class="inline-location"><small>LOCAL DE SAÍDA · SEXTA 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Bairro São Bento · Belo Horizonte/MG</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 ABRIR NO GOOGLE MAPS ↗</a></div>'+
+ '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças do '+bus(n)+'.</p>'+
+ '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div></div>';
+ resultados.appendChild(detalhe);
+ detalhe.querySelector(".change-search").addEventListener("click",()=>{busca.value="";resultados.replaceChildren();busca.focus()});
 }
 function abrir(n,destaque=""){
   cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.onibus)===n)));
