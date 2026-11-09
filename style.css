@@ -118,3 +118,44 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
 #cards>.card .card-inner{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
 #cards>.card .card-inner p{font-size:12px;line-height:1.4;font-weight:700}
 @media(max-width:700px){#cards.bus-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}#cards>.card{min-height:124px}}
+
+/* Busca que leva diretamente à lista do ônibus, otimizada para mães no celular */
+.search-results-title{font-size:14px;color:#3a5275;font-weight:700;margin:4px 0}
+.search-person{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:2px solid #d9e5f5;border-radius:9px;padding:16px;text-align:left;color:#17365e;cursor:pointer;min-height:72px}
+.search-person:focus-visible,.search-person:hover{outline:3px solid #ffca52;outline-offset:1px}
+.search-person-name{font-size:17px;font-weight:800;line-height:1.35;flex:1;overflow-wrap:anywhere}
+.search-person-bus{font-size:15px;font-weight:900;background:#2052a9;color:#fff;border-radius:6px;padding:10px;white-space:nowrap}
+.search-person-bus span{font-size:22px;margin-left:4px}
+.bus-list{scroll-margin-top:12px}
+.lista-head{position:relative}
+.lista-head small{font-size:12px;font-weight:700;letter-spacing:1px;color:#e1ebff}
+.list-location{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px;background:#eef5ff;border-bottom:1px solid #d6e4f5}
+.list-location>div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.list-location small{font-size:12px;font-weight:800;color:#2052a9}
+.list-location strong{font-size:19px;line-height:1.3;color:#17365e}
+.list-location span{font-size:14px;color:#52647e}
+.list-location a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:50px;background:#2052a9;color:white;text-decoration:none;border-radius:7px;padding:12px 16px;font-size:14px;font-weight:800;white-space:nowrap}
+.passenger-list{display:flex;flex-direction:column}
+.passenger{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid #e5ecf5;background:#fff}
+.passenger:nth-child(even){background:#f8faff}
+.passenger strong{display:block;font-size:16px;line-height:1.4;color:#18365c;overflow-wrap:anywhere}
+.passenger small{display:block;font-size:13px;color:#61728a;margin-top:3px}
+.passenger>span{font-size:13px;color:#49607c;max-width:35%;text-align:right}
+.passenger-highlight,.passenger-highlight:nth-child(even){background:#fff1b7;border-left:6px solid #e5a900}
+.passenger-highlight strong{color:#123b83}
+.found-note{margin:0;padding:11px 18px;background:#fff8e6;font-size:13px;color:#5e4b18}
+@media(max-width:700px){
+ .search-person{padding:14px 12px;min-height:74px}
+ .search-person-name{font-size:16px}
+ .search-person-bus{font-size:13px;padding:10px 8px}
+ .bus-list{margin-top:18px;border-radius:10px}
+ .lista-head{padding:16px}
+ .lista-head h3{font-size:34px}
+ .lista-head button{min-height:46px;font-size:15px}
+ .list-location{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:17px 15px}
+ .list-location strong{font-size:19px}
+ .list-location a{width:100%;min-height:55px;font-size:15px}
+ .passenger{padding:15px 14px;gap:10px;align-items:flex-start}
+ .passenger strong{font-size:16px}
+ .passenger>span{font-size:12px;max-width:38%;line-height:1.45}
+}
