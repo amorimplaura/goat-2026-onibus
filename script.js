@@ -33,7 +33,7 @@ function mostrarResultado(crianca){
  '<div class="inline-bus"><small>ÔNIBUS DA CRIANÇA</small><strong>'+bus(n)+'</strong></div>'+
  '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças do '+bus(n)+'.</p>'+
  '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div></div>'+
- '<div class="inline-location"><small>LOCAL DE SAÍDA · SEXTA 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Bairro São Bento · Belo Horizonte/MG</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 ABRIR NO GOOGLE MAPS ↗</a></div>'+
+ '<div class="inline-location"><small>LOCAL DE SAÍDA · SEXTA 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Bairro São Bento · Belo Horizonte/MG</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 ABRIR NO GOOGLE MAPS ↗</a></div>';
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="search-again">PESQUISAR OUTRA CRIANÇA ↗</button>');
  resultados.appendChild(detalhe);
  const reiniciar=()=>{busca.value="";resultados.replaceChildren();busca.focus()};
