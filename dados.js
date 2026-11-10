@@ -903,7 +903,7 @@ const PARTICIPANTES = [
     "nome": "Mateus Dias Vaz De Moura",
     "perse": "P2",
     "observacao": "",
-    "onibus": 6
+    "onibus": 9
   },
   {
     "nome": "Rafael Faria Isoni",
@@ -1431,7 +1431,7 @@ const PARTICIPANTES = [
     "nome": "Arthur Vieira De Jesus",
     "perse": "P2",
     "observacao": "",
-    "onibus": 9
+    "onibus": 6
   },
   {
     "nome": "Bernardo Vieira Borges",
