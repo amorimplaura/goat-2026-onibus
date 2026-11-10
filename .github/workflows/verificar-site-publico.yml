@@ -1,0 +1,58 @@
+name: Verificar atualizacao do site publico
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'script.js'
+      - 'dados.js'
+      - 'sw.js'
+      - '.github/workflows/verificar-site-publico.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */2 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verificar-site-publico
+  cancel-in-progress: true
+
+jobs:
+  conferir-publicacao:
+    name: Conferir se o site oficial exibe a versao mais recente
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Conferir site real apos publicacao do Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          SITE="https://amorimplaura.github.io/goat-2026-onibus"
+          for tentativa in $(seq 1 30); do
+            versao="${GITHUB_SHA}-${tentativa}-$(date +%s)"
+            correto=1
+            for arquivo in index.html script.js dados.js sw.js; do
+              if ! curl --fail --silent --show-error --location --max-time 25 --retry 2 \
+                --header 'Cache-Control: no-cache' \
+                "$SITE/$arquivo?verificacao=$versao" \
+                --output "/tmp/site-$arquivo"; then
+                correto=0
+                break
+              fi
+              if ! cmp --silent "$arquivo" "/tmp/site-$arquivo"; then
+                correto=0
+                break
+              fi
+            done
+            if [ "$correto" -eq 1 ] && ! grep -q 'id="goat-entrada"' "/tmp/site-index.html"; then
+              echo "OK: site publico serve os mesmos arquivos do GitHub, sem senha. Tentativa $tentativa."
+              exit 0
+            fi
+            echo "Aguardando publicacao ou cache do GitHub Pages (tentativa $tentativa/30)."
+            sleep 30
+          done
+          echo "::error::Site publico nao reflete a versao do GitHub apos 15 minutos."
+          exit 1
