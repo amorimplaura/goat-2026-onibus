@@ -162,7 +162,8 @@ if("serviceWorker" in navigator){
  if(TESTE){
    enviar.disabled=false;
    enviar.removeAttribute("aria-disabled");
-   enviar.textContent="ENVIAR SOLICITAÇÃO DE TESTE";
+   enviar.querySelector(".request-submit-text").textContent="Enviar solicitação de teste";
+   form.querySelector(".request-submit-hint").textContent="Teste de integração: confirme o registro na planilha antes de divulgar aos responsáveis.";
    const aviso=form.querySelector(".request-warning");
    aviso.textContent="MODO DE TESTE: a solicitação será encaminhada ao Google Sheets, mas só estará confirmada quando aparecer na planilha. Não é uma aprovação de troca.";
  }
@@ -184,13 +185,23 @@ if("serviceWorker" in navigator){
      observacoes:document.getElementById("req-details").value.trim(),
      responsavel:document.getElementById("req-parent").value.trim(),telefone:tel
    };
-   enviar.disabled=true;feedback.textContent="Encaminhando teste...";
+   enviar.disabled=true;
+   enviar.setAttribute("aria-busy","true");
+   enviar.querySelector(".request-submit-text").textContent="Enviando solicitação...";
+   feedback.className="request-feedback";
+   feedback.textContent="Encaminhando o pedido, não feche esta página.";
    try{
      await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload),redirect:"follow"});
-     feedback.textContent="Teste encaminhado. Verifique a planilha: só considere recebido se a linha aparecer. Não é confirmação da troca.";
+     feedback.className="request-feedback request-feedback-info";
+     feedback.textContent="Pedido encaminhado para processamento. Confirme na planilha se foi registrado; a alteração ainda depende de análise.";
    }catch(err){
-     feedback.textContent="Não foi possível encaminhar o teste. Tente novamente.";
-   }finally{enviar.disabled=false}
+     feedback.className="request-feedback request-feedback-error";
+     feedback.textContent="O envio não foi concluído. Confira sua conexão e tente novamente.";
+   }finally{
+     enviar.disabled=false;
+     enviar.removeAttribute("aria-busy");
+     enviar.querySelector(".request-submit-text").textContent="Enviar solicitação de teste";
+   }
  });
 
 })();
