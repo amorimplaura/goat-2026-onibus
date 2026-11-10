@@ -155,18 +155,5 @@ if("serviceWorker" in navigator){
   companion.required=mode==="companhia";busSelect.required=mode==="onibus";
  }
  child.addEventListener("input",update);companion.addEventListener("input",update);type.addEventListener("change",update);update();
- form.addEventListener("submit",e=>{
-  e.preventDefault();const p=find(child.value),friend=find(companion.value),mode=type.value;
-  const feedback=document.getElementById("req-feedback");
-  if(!p){feedback.textContent="Selecione uma criança da lista de nomes.";child.focus();return}
-  if(mode==="companhia"&&!friend){feedback.textContent="Selecione a outra criança na lista de nomes.";companion.focus();return}
-  if(mode==="companhia"&&norm(p.nome)===norm(friend.nome)){feedback.textContent="Selecione uma criança diferente.";companion.focus();return}
-  if(mode==="companhia"&&Number(p.onibus)===Number(friend.onibus)){feedback.textContent="As duas crianças já estão no mesmo ônibus. Se houver outro pedido, descreva em Outra solicitação.";return}
-  const phone=document.getElementById("req-phone").value.trim();
-  if(phone.replace(/\D/g,"").length<10){feedback.textContent="Confira o número de WhatsApp do responsável.";return}
-  const request=mode==="companhia"?"Ficar com "+friend.nome+" ("+bus(friend.onibus)+")":mode==="onibus"?"Trocar para "+bus(busSelect.value):mode==="trajeto"?"Corrigir ida ou volta":"Outra solicitação";
-  const msg=["Olá, Mel! Gostaria de enviar uma solicitação pelo site GOAT 2026.","","Criança: "+p.nome,"Persê: "+p.perse,"Ônibus atual: "+bus(p.onibus),"Pedido: "+request,"Observações: "+(document.getElementById("req-details").value.trim()||"Nenhuma"),"Responsável: "+document.getElementById("req-parent").value.trim(),"WhatsApp: "+phone,"","Estou ciente de que a solicitação depende de análise e confirmação."].join("\n");
-  feedback.textContent="O WhatsApp será aberto. Toque em Enviar na conversa com a Mel para concluir.";
-  window.open("https://wa.me/5531998666095?text="+encodeURIComponent(msg),"_blank","noopener,noreferrer");
- });
+ form.addEventListener("submit",e=>{e.preventDefault();document.getElementById("req-feedback").textContent="O envio está temporariamente indisponível enquanto configuramos o recebimento automático.";});
 })();
