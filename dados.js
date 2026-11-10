@@ -1,11 +1,5 @@
 const PARTICIPANTES = [
   {
-    "nome": "Ana Clara Pertence Bernardes",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Ana Flávia Carvalho Santos Teixeira",
     "perse": "P4",
     "observacao": "",
@@ -678,12 +672,6 @@ const PARTICIPANTES = [
     "onibus": 4
   },
   {
-    "nome": "Maria Valentina Almeida Pinto",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 4
-  },
-  {
     "nome": "Mariana Ricieri Meira",
     "perse": "P4",
     "observacao": "",
@@ -721,12 +709,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Bruna Valentina Lima Ribeiro Vieira",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 5
-  },
-  {
-    "nome": "Catarina Albergaria Costa De Caux",
     "perse": "P4",
     "observacao": "",
     "onibus": 5
@@ -936,12 +918,6 @@ const PARTICIPANTES = [
     "onibus": 6
   },
   {
-    "nome": "Arthur De Castro Areal Caniato",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 6
-  },
-  {
     "nome": "Bento Duarte Massa",
     "perse": "P3",
     "observacao": "",
@@ -1020,12 +996,6 @@ const PARTICIPANTES = [
     "onibus": 6
   },
   {
-    "nome": "Mateus Sena Santos",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 6
-  },
-  {
     "nome": "Miguel Escobar Ribeiro Lima",
     "perse": "P3",
     "observacao": "",
@@ -1093,12 +1063,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Bernardo Sabino De Castro",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 7
-  },
-  {
-    "nome": "Bruno Lopes Vimieiro",
     "perse": "P3",
     "observacao": "",
     "onibus": 7
@@ -1482,12 +1446,6 @@ const PARTICIPANTES = [
     "onibus": 9
   },
   {
-    "nome": "Gabriel Lucca Rodrigues Soares",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 9
-  },
-  {
     "nome": "Gabriel Teixeira Viegas Rangel",
     "perse": "P2",
     "observacao": "",
@@ -1555,18 +1513,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Júlia Gouvêa Veiga",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 9
-  },
-  {
-    "nome": "Keven De Pinho Morais Amaral",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 9
-  },
-  {
-    "nome": "Laura Alvarez Souza Lima De Carvalho",
     "perse": "P2",
     "observacao": "",
     "onibus": 9
@@ -1680,12 +1626,6 @@ const PARTICIPANTES = [
     "onibus": 10
   },
   {
-    "nome": "Mariana Almeida De Oliveira Santos",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 10
-  },
-  {
     "nome": "Mariana Guerra Vidigal Lopes",
     "perse": "P2",
     "observacao": "",
@@ -1699,12 +1639,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Matheus Leite Pereira",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 10
-  },
-  {
-    "nome": "Matteo Capanema Glória",
     "perse": "P2",
     "observacao": "",
     "onibus": 10
@@ -1735,12 +1669,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Ricardo Barros Ferreira De Melo",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 10
-  },
-  {
-    "nome": "Rodrigo Alves De Pinho",
     "perse": "P2",
     "observacao": "",
     "onibus": 10
@@ -1814,12 +1742,6 @@ const PARTICIPANTES = [
   {
     "nome": "Theo Bernardes Lamounier",
     "perse": "P0",
-    "observacao": "",
-    "onibus": 11
-  },
-  {
-    "nome": "Ana Beatriz Almeida Pinto",
-    "perse": "P1",
     "observacao": "",
     "onibus": 11
   },
