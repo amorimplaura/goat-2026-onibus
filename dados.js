@@ -318,7 +318,7 @@ const PARTICIPANTES = [
     "onibus": 2
   },
   {
-    "nome": "Marcela Salvador",
+    "nome": "Marcela Salvador Ferreira Castro",
     "perse": "P4",
     "observacao": "",
     "onibus": 2
@@ -570,7 +570,7 @@ const PARTICIPANTES = [
     "onibus": 4
   },
   {
-    "nome": "Ceciiia Tibo Hoffmann",
+    "nome": "Cecília Tibo Hoffmann",
     "perse": "P4",
     "observacao": "",
     "onibus": 4
