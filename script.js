@@ -39,6 +39,8 @@ function mostrarResultado(crianca){
  '<div class="inline-location"><small>LOCAL DE SAÍDA · SEXTA 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Bairro São Bento · Belo Horizonte/MG</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 ABRIR NO GOOGLE MAPS ↗</a></div>'+
  '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças do '+bus(n)+'.</p>'+
  '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div></div>';
+ detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="request-from-result">SOLICITAR ALTERAÇÃO DE ÔNIBUS ↗</button>');
+ detalhe.querySelector('.request-from-result').addEventListener('click',()=>{document.getElementById('req-child').value=crianca.nome;document.getElementById('req-child').dispatchEvent(new Event('input'));document.getElementById('solicitacoes').scrollIntoView({behavior:'smooth'});});
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="search-again">PESQUISAR OUTRA CRIANÇA ↗</button>');
  resultados.appendChild(detalhe);
  const reiniciar=()=>{busca.value="";resultados.replaceChildren();busca.focus()};
@@ -131,3 +133,40 @@ cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()
 if("serviceWorker" in navigator){
   navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});
 }
+
+/* Solicitações: a etapa final é o envio explícito no WhatsApp da responsável.
+   Nenhum pedido é considerado recebido apenas por preencher este formulário. */
+(function(){
+ const form=document.getElementById("request-form");if(!form)return;
+ const child=document.getElementById("req-child"),companion=document.getElementById("req-companion");
+ const type=document.getElementById("req-type"),busSelect=document.getElementById("req-bus");
+ const current=document.getElementById("req-current"),compInfo=document.getElementById("req-companion-info");
+ const find=name=>dados.find(p=>norm(p.nome)===norm(name));
+ const options=document.getElementById("req-children");
+ dados.slice().sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR")).forEach(p=>{const o=document.createElement("option");o.value=p.nome;options.appendChild(o)});
+ for(let i=1;i<=11;i++){const o=document.createElement("option");o.value=String(i);o.textContent=bus(i);busSelect.appendChild(o)}
+ function update(){
+  const p=find(child.value),friend=find(companion.value);
+  current.textContent=p?bus(p.onibus)+" · "+p.perse:"Selecione um nome completo da lista.";
+  compInfo.textContent=friend?bus(friend.onibus)+" · "+friend.perse:"";
+  const mode=type.value;
+  document.getElementById("req-companion-wrap").hidden=mode!=="companhia";
+  document.getElementById("req-bus-wrap").hidden=mode!=="onibus";
+  companion.required=mode==="companhia";busSelect.required=mode==="onibus";
+ }
+ child.addEventListener("input",update);companion.addEventListener("input",update);type.addEventListener("change",update);update();
+ form.addEventListener("submit",e=>{
+  e.preventDefault();const p=find(child.value),friend=find(companion.value),mode=type.value;
+  const feedback=document.getElementById("req-feedback");
+  if(!p){feedback.textContent="Selecione uma criança da lista de nomes.";child.focus();return}
+  if(mode==="companhia"&&!friend){feedback.textContent="Selecione a outra criança na lista de nomes.";companion.focus();return}
+  if(mode==="companhia"&&norm(p.nome)===norm(friend.nome)){feedback.textContent="Selecione uma criança diferente.";companion.focus();return}
+  if(mode==="companhia"&&Number(p.onibus)===Number(friend.onibus)){feedback.textContent="As duas crianças já estão no mesmo ônibus. Se houver outro pedido, descreva em Outra solicitação.";return}
+  const phone=document.getElementById("req-phone").value.trim();
+  if(phone.replace(/\D/g,"").length<10){feedback.textContent="Confira o número de WhatsApp do responsável.";return}
+  const request=mode==="companhia"?"Ficar com "+friend.nome+" ("+bus(friend.onibus)+")":mode==="onibus"?"Trocar para "+bus(busSelect.value):mode==="trajeto"?"Corrigir ida ou volta":"Outra solicitação";
+  const msg=["Olá, Mel! Gostaria de enviar uma solicitação pelo site GOAT 2026.","","Criança: "+p.nome,"Persê: "+p.perse,"Ônibus atual: "+bus(p.onibus),"Pedido: "+request,"Observações: "+(document.getElementById("req-details").value.trim()||"Nenhuma"),"Responsável: "+document.getElementById("req-parent").value.trim(),"WhatsApp: "+phone,"","Estou ciente de que a solicitação depende de análise e confirmação."].join("\n");
+  feedback.textContent="O WhatsApp será aberto. Toque em Enviar na conversa com a Mel para concluir.";
+  window.open("https://wa.me/5531998666095?text="+encodeURIComponent(msg),"_blank","noopener,noreferrer");
+ });
+})();
