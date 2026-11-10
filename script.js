@@ -134,7 +134,7 @@ if("serviceWorker" in navigator){
   navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});
 }
 
-/* Solicitações: o envio permanece suspenso publicamente até conferência de teste na planilha. */
+/* Solicitações enviadas ao Apps Script; não alterar listas automaticamente. */
 (function(){
  const form=document.getElementById("request-form");if(!form)return;
  const child=document.getElementById("req-child"),companion=document.getElementById("req-companion");
@@ -157,20 +157,10 @@ if("serviceWorker" in navigator){
 
  const ENDPOINT="https://script.google.com/macros/s/AKfycbzMeDVplfUWk_JHmLUBYEMryuF7E7zI_dz2wISk12_EpzB5xWKwraCrCmsNQ_CxlZHp/exec";
 
- const TESTE= new URLSearchParams(window.location.search).get("testeSolicitacao")==="goat2026";
  const enviar=form.querySelector(".request-submit");
- if(TESTE){
-   enviar.disabled=false;
-   enviar.removeAttribute("aria-disabled");
-   enviar.querySelector(".request-submit-text").textContent="Enviar solicitação de teste";
-   form.querySelector(".request-submit-hint").textContent="Teste de integração: confirme o registro na planilha antes de divulgar aos responsáveis.";
-   const aviso=form.querySelector(".request-warning");
-   aviso.textContent="MODO DE TESTE: a solicitação será encaminhada ao Google Sheets, mas só estará confirmada quando aparecer na planilha. Não é uma aprovação de troca.";
- }
  form.addEventListener("submit",async e=>{
    e.preventDefault();
    const feedback=document.getElementById("req-feedback");
-   if(!TESTE){feedback.textContent="O recebimento está em verificação. Nenhum pedido foi enviado.";return}
    const p=find(child.value),friend=find(companion.value),mode=type.value;
    if(!p){feedback.textContent="Selecione a criança da lista.";child.focus();return}
    if(mode==="companhia"&&!friend){feedback.textContent="Selecione a outra criança da lista.";companion.focus();return}
@@ -189,18 +179,18 @@ if("serviceWorker" in navigator){
    enviar.setAttribute("aria-busy","true");
    enviar.querySelector(".request-submit-text").textContent="Enviando solicitação...";
    feedback.className="request-feedback";
-   feedback.textContent="Encaminhando o pedido, não feche esta página.";
+   feedback.textContent="Enviando o pedido, não feche esta página.";
    try{
      await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload),redirect:"follow"});
      feedback.className="request-feedback request-feedback-info";
-     feedback.textContent="Pedido encaminhado para processamento. Confirme na planilha se foi registrado; a alteração ainda depende de análise.";
+     feedback.textContent="Solicitação encaminhada para análise! A organização verificará o pedido. A troca de ônibus depende de confirmação.";
    }catch(err){
      feedback.className="request-feedback request-feedback-error";
      feedback.textContent="O envio não foi concluído. Confira sua conexão e tente novamente.";
    }finally{
      enviar.disabled=false;
      enviar.removeAttribute("aria-busy");
-     enviar.querySelector(".request-submit-text").textContent="Enviar solicitação de teste";
+     enviar.querySelector(".request-submit-text").textContent="Enviar solicitação para análise";
    }
  });
 
