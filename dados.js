@@ -1014,6 +1014,12 @@ const PARTICIPANTES = [
     "onibus": 6
   },
   {
+    "nome": "Laura Mourão Machado",
+    "perse": "P4",
+    "observacao": "Não frequenta a Perseverança; transporte a confirmar",
+    "onibus": 6
+  },
+  {
     "nome": "Lucas José Lamounier Lemos",
     "perse": "P4",
     "observacao": "",
