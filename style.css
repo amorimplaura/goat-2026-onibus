@@ -206,3 +206,19 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
 @media(max-width:780px){
   .quick-contact-deadline{align-self:flex-start;white-space:normal;font-size:13px}
 }
+
+/* Formulário de solicitações */
+.request-section{margin:28px 0;padding:clamp(20px,4vw,40px);border:1px solid #dce5f3;border-radius:22px;background:#fff;box-shadow:0 12px 35px #163c7810}
+.request-heading h2{font-family:"Barlow Condensed",sans-serif;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:12px 0}
+.request-heading p{color:#53647c;line-height:1.6}
+.request-form{display:grid;gap:10px;max-width:720px;margin-top:24px}
+.request-form label{font-weight:800;margin-top:8px;font-size:14px}
+.request-form input,.request-form select,.request-form textarea{width:100%;min-height:46px;padding:12px 14px;border:1px solid #bfcde1;border-radius:11px;background:#fff;color:#17294b;font:inherit}
+.request-form textarea{resize:vertical}
+.request-form input:focus,.request-form select:focus,.request-form textarea:focus{outline:3px solid #9fc1ff;outline-offset:1px}
+.request-current{margin:0;color:#526786;font-size:13px}
+.request-warning{padding:15px;border-radius:12px;background:#eef4ff;color:#243c65;font-size:14px;line-height:1.6}
+.request-submit,.request-from-result{border:0;border-radius:12px;background:#2052a9;color:white;font-weight:800;padding:15px 18px;cursor:pointer}
+.request-submit:hover,.request-from-result:hover{background:#123a82}
+.request-from-result{width:100%;margin:16px 0 4px}
+.request-form [hidden]{display:none!important}
