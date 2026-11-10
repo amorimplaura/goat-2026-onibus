@@ -1,6 +1,11 @@
+/* Compatibilidade: remove a antiga tela de senha mesmo quando o Safari reutiliza um HTML em cache. */
+(function(){
+  const telaAntiga=document.getElementById("goat-entrada");
+  if(telaAntiga)telaAntiga.remove();
+})();
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const dados=typeof PARTICIPANTES==="undefined"?[]:PARTICIPANTES;
+let dados=typeof PARTICIPANTES==="undefined"?[]:PARTICIPANTES;
 const busca=document.querySelector("#pesquisa"),resultados=document.querySelector("#resultados"),cards=document.querySelector("#cards"),lista=document.querySelector("#lista-onibus");
 const bus=n=>"ÔNIBUS "+String(n).padStart(2,"0");
 const locais={
@@ -40,7 +45,7 @@ function mostrarResultado(crianca){
  detalhe.querySelector(".change-search").addEventListener("click",reiniciar);
  detalhe.querySelector(".search-again").addEventListener("click",reiniciar);
 }
-function abrir(n,destaque=""){
+function abrir(n,destaque="",rolar=true){
   cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.onibus)===n)));
   const pessoas=dados.filter(p=>Number(p.onibus)===n),l=local(n);
   lista.hidden=false;
@@ -49,7 +54,72 @@ function abrir(n,destaque=""){
     (destaque?'<p class="found-note">Nome pesquisado destacado em amarelo na lista.</p>':'')+
     '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(destaque&&norm(p.nome)===norm(destaque)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div>';
   lista.querySelector(".close-list").addEventListener("click",()=>{lista.hidden=true;cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed","false"))});
-  lista.scrollIntoView({behavior:"auto",block:"start"});
+  if(rolar)lista.scrollIntoView({behavior:"auto",block:"start"});
 }
 busca.addEventListener("input",pesquisar);
 cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()=>abrir(Number(b.dataset.onibus))));
+
+/* Atualizações contínuas, sem mudar o link enviado aos responsáveis.
+ * A consulta é atualizada quando a pessoa retorna à aba ou clica no botão.
+ * fetch com URL única e cache no-store evita usar o arquivo de passageiros salvo no navegador. */
+(function(){
+  let ultimaVerificacao=Date.now();
+  let verificando=false;
+  const bloco=document.createElement("div");
+  bloco.className="goat-atualizacao";
+  bloco.style.cssText="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:14px 0 4px;font-size:13px;color:#4a5c78";
+  const aviso=document.createElement("span");
+  aviso.setAttribute("role","status");
+  aviso.textContent="As listas podem mudar. Ao voltar à página, verificamos as atualizações.";
+  const botao=document.createElement("button");
+  botao.type="button";
+  botao.textContent="↻ ATUALIZAR LISTAS";
+  botao.style.cssText="border:1px solid #2857a4;border-radius:8px;background:#fff;color:#18478e;font-size:12px;font-weight:800;padding:11px 14px;cursor:pointer";
+  bloco.append(aviso,botao);
+  const dica=document.querySelector("#consulta .consult-tip");
+  if(dica)dica.after(bloco);else document.querySelector("#consulta")?.append(bloco);
+
+  async function conferirListas(){
+    if(verificando)return;
+    verificando=true;
+    botao.disabled=true;
+    aviso.style.color="#4a5c78";
+    aviso.textContent="Conferindo a versão mais recente...";
+    try{
+      const resposta=await fetch("dados.js?atualizacao="+Date.now(),{cache:"no-store"});
+      if(!resposta.ok)throw new Error("HTTP "+resposta.status);
+      const texto=await resposta.text();
+      const inicio=texto.indexOf("[");
+      const fim=texto.lastIndexOf("]");
+      if(inicio<0||fim<inicio)throw new Error("Arquivo de listas inválido");
+      const novos=JSON.parse(texto.slice(inicio,fim+1));
+      if(!Array.isArray(novos)||!novos.length||novos.some(p=>!p.nome||!Number.isInteger(Number(p.onibus))))throw new Error("Dados incompletos");
+      const mudou=JSON.stringify(novos)!==JSON.stringify(dados);
+      if(mudou){
+        const selecionado=resultados.querySelector(".child-name")?.textContent;
+        const aberto=cards.querySelector('[aria-pressed="true"]');
+        const onibusAberto=aberto&&!lista.hidden?Number(aberto.dataset.onibus):null;
+        dados=novos;
+        if(selecionado){
+          const pessoa=dados.find(p=>norm(p.nome)===norm(selecionado));
+          if(pessoa)mostrarResultado(pessoa);else pesquisar();
+        }else if(busca.value.trim())pesquisar();
+        if(onibusAberto)abrir(onibusAberto,"",false);
+      }
+      ultimaVerificacao=Date.now();
+      aviso.style.color="#24613c";
+      aviso.textContent=mudou?"Listas atualizadas agora.":"Listas verificadas agora.";
+    }catch(erro){
+      aviso.style.color="#9b2929";
+      aviso.textContent="Não foi possível confirmar as listas mais recentes. Tente atualizar novamente.";
+    }finally{
+      botao.disabled=false;
+      verificando=false;
+    }
+  }
+  botao.addEventListener("click",()=>{void conferirListas()});
+  const aoRetornar=()=>{if(Date.now()-ultimaVerificacao>10000)void conferirListas()};
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)aoRetornar()});
+  window.addEventListener("focus",aoRetornar);
+  window.addEventListener("pageshow",evento=>{if(evento.persisted)void conferirListas()});
+})();
