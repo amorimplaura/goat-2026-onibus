@@ -157,26 +157,5 @@ if("serviceWorker" in navigator){
  child.addEventListener("input",update);companion.addEventListener("input",update);type.addEventListener("change",update);update();
 
  const ENDPOINT="https://script.google.com/macros/s/AKfycbzMeDVplfUWk_JHmLUBYEMryuF7E7zI_dz2wISk12_EpzB5xWKwraCrCmsNQ_CxlZHp/exec";
- form.addEventListener("submit",async e=>{
-  e.preventDefault();
-  const feedback=document.getElementById("req-feedback"),submit=form.querySelector('[type="submit"]');
-  const p=find(child.value),friend=find(companion.value),mode=type.value;
-  if(!p){feedback.textContent="Selecione o nome completo da criança na lista.";child.focus();return}
-  if(mode==="companhia"&&!friend){feedback.textContent="Selecione o nome completo da outra criança na lista.";companion.focus();return}
-  if(mode==="companhia"&&norm(p.nome)===norm(friend.nome)){feedback.textContent="Selecione outra criança.";return}
-  if(mode==="companhia"&&Number(p.onibus)===Number(friend.onibus)){feedback.textContent="As duas crianças já estão no mesmo ônibus.";return}
-  const phone=document.getElementById("req-phone").value.trim();
-  if(phone.replace(/\D/g,"").length<10){feedback.textContent="Confira o WhatsApp do responsável.";return}
-  const payload={crianca:p.nome,perse:p.perse,onibusAtual:bus(p.onibus),tipo:mode,outraCrianca:mode==="companhia"?friend.nome:"",onibusDesejado:mode==="onibus"?bus(busSelect.value):"",observacoes:document.getElementById("req-details").value.trim(),responsavel:document.getElementById("req-parent").value.trim(),telefone:phone};
-  submit.disabled=true;feedback.textContent="Enviando solicitação...";
-  try{
-   /* Apps Script redirects its ContentService response across origins; no-cors
-      allows writing but does not expose server acknowledgement to this page. */
-   await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),redirect:"follow"});
-   feedback.textContent="Solicitação encaminhada para processamento! O recebimento será conferido pela organização. A troca depende de aprovação.";
-   form.reset();update();
-  }catch(error){
-   feedback.textContent="Não foi possível encaminhar a solicitação. Tente novamente mais tarde.";
-  }finally{submit.disabled=false}
- });
+ form.addEventListener("submit",e=>{e.preventDefault();document.getElementById("req-feedback").textContent="O envio está temporariamente suspenso. Não foi registrada nenhuma solicitação.";});
 })();
