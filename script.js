@@ -176,7 +176,7 @@ if("serviceWorker" in navigator){
    if(mode==="companhia"&&norm(p.nome)===norm(friend.nome)){feedback.textContent="Selecione uma outra criança.";return}
    if(mode==="companhia"&&Number(p.onibus)===Number(friend.onibus)){feedback.textContent="As duas crianças já estão no mesmo ônibus.";return}
    const tel=document.getElementById("req-phone").value.trim();
-   if(tel.replace(/\\D/g,"").length<10){feedback.textContent="Confira o WhatsApp informado.";return}
+   if(tel.replace(/\D/g,"").length<10){feedback.textContent="Confira o WhatsApp informado.";return}
    const payload={
      crianca:p.nome,perse:p.perse,onibusAtual:bus(p.onibus),tipo:mode,
      outraCrianca:mode==="companhia"?friend.nome:"",
