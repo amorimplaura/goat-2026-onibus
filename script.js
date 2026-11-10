@@ -134,8 +134,7 @@ if("serviceWorker" in navigator){
   navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});
 }
 
-/* Solicitações: a etapa final é o envio explícito no WhatsApp da responsável.
-   Nenhum pedido é considerado recebido apenas por preencher este formulário. */
+/* Solicitações: o envio permanece suspenso publicamente até conferência de teste na planilha. */
 (function(){
  const form=document.getElementById("request-form");if(!form)return;
  const child=document.getElementById("req-child"),companion=document.getElementById("req-companion");
@@ -157,5 +156,41 @@ if("serviceWorker" in navigator){
  child.addEventListener("input",update);companion.addEventListener("input",update);type.addEventListener("change",update);update();
 
  const ENDPOINT="https://script.google.com/macros/s/AKfycbzMeDVplfUWk_JHmLUBYEMryuF7E7zI_dz2wISk12_EpzB5xWKwraCrCmsNQ_CxlZHp/exec";
- form.addEventListener("submit",e=>{e.preventDefault();document.getElementById("req-feedback").textContent="O envio está temporariamente suspenso. Não foi registrada nenhuma solicitação.";});
+
+ const TESTE= new URLSearchParams(window.location.search).get("testeSolicitacao")==="goat2026";
+ const enviar=form.querySelector(".request-submit");
+ if(TESTE){
+   enviar.disabled=false;
+   enviar.removeAttribute("aria-disabled");
+   enviar.textContent="ENVIAR SOLICITAÇÃO DE TESTE";
+   const aviso=form.querySelector(".request-warning");
+   aviso.textContent="MODO DE TESTE: a solicitação será encaminhada ao Google Sheets, mas só estará confirmada quando aparecer na planilha. Não é uma aprovação de troca.";
+ }
+ form.addEventListener("submit",async e=>{
+   e.preventDefault();
+   const feedback=document.getElementById("req-feedback");
+   if(!TESTE){feedback.textContent="O recebimento está em verificação. Nenhum pedido foi enviado.";return}
+   const p=find(child.value),friend=find(companion.value),mode=type.value;
+   if(!p){feedback.textContent="Selecione a criança da lista.";child.focus();return}
+   if(mode==="companhia"&&!friend){feedback.textContent="Selecione a outra criança da lista.";companion.focus();return}
+   if(mode==="companhia"&&norm(p.nome)===norm(friend.nome)){feedback.textContent="Selecione uma outra criança.";return}
+   if(mode==="companhia"&&Number(p.onibus)===Number(friend.onibus)){feedback.textContent="As duas crianças já estão no mesmo ônibus.";return}
+   const tel=document.getElementById("req-phone").value.trim();
+   if(tel.replace(/\\D/g,"").length<10){feedback.textContent="Confira o WhatsApp informado.";return}
+   const payload={
+     crianca:p.nome,perse:p.perse,onibusAtual:bus(p.onibus),tipo:mode,
+     outraCrianca:mode==="companhia"?friend.nome:"",
+     onibusDesejado:mode==="onibus"?bus(busSelect.value):"",
+     observacoes:document.getElementById("req-details").value.trim(),
+     responsavel:document.getElementById("req-parent").value.trim(),telefone:tel
+   };
+   enviar.disabled=true;feedback.textContent="Encaminhando teste...";
+   try{
+     await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload),redirect:"follow"});
+     feedback.textContent="Teste encaminhado. Verifique a planilha: só considere recebido se a linha aparecer. Não é confirmação da troca.";
+   }catch(err){
+     feedback.textContent="Não foi possível encaminhar o teste. Tente novamente.";
+   }finally{enviar.disabled=false}
+ });
+
 })();
