@@ -198,3 +198,11 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
 
 /* Menu de navegação horizontal abaixo da arte principal */
 .section-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #dce6f3;box-shadow:0 4px 16px rgba(16,47,102,.09)}.section-nav-inner{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:9px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;-webkit-overflow-scrolling:touch}.section-nav-inner a{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;white-space:nowrap;padding:10px 15px;border:1px solid #d8e3f2;border-radius:999px;background:#f5f8fe;color:#173e89;text-decoration:none;font:700 13px/1.25 "DM Sans",sans-serif;transition:background .2s,color .2s,border-color .2s}.section-nav-inner a:hover,.section-nav-inner a:focus-visible{background:#173e89;color:#fff;border-color:#173e89}.section-nav-inner a:focus-visible{outline:3px solid #f3c844;outline-offset:2px}html{scroll-padding-top:90px}#bagagem,#orientacoes-medicamentos,#packing-title,#celulares,#consulta,#embarque,#listas{scroll-margin-top:90px}@media(max-width:700px){.section-nav-inner{padding:9px 12px;gap:7px}.section-nav-inner a{font-size:12px;padding:9px 12px}html{scroll-padding-top:76px}#bagagem,#orientacoes-medicamentos,#packing-title,#celulares,#consulta,#embarque,#listas{scroll-margin-top:76px}}@media(prefers-reduced-motion:reduce){.section-nav-inner a{transition:none}}
+
+/* Prazo para solicitações de troca — junto ao contato da Stella. */
+.quick-contact{flex-wrap:wrap}
+.quick-contact-deadline{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:0 0 auto;padding:10px 14px;border-radius:999px;background:#d6efdd;color:#135537;font-size:13px;font-weight:800;white-space:nowrap;line-height:1.35}
+.quick-contact-deadline>span{font-size:19px;line-height:1}
+@media(max-width:780px){
+  .quick-contact-deadline{align-self:flex-start;white-space:normal;font-size:13px}
+}
