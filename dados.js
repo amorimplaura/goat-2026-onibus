@@ -774,6 +774,12 @@ const PARTICIPANTES = [
     "onibus": 5
   },
   {
+    "nome": "Júlia Varella Oliveira",
+    "perse": "P4",
+    "observacao": "",
+    "onibus": 5
+  },
+  {
     "nome": "Lara Dias Vaz De Moura",
     "perse": "P4",
     "observacao": "",
