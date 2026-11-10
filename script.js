@@ -121,6 +121,8 @@ cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()
   const aoRetornar=()=>{if(Date.now()-ultimaVerificacao>10000)void conferirListas()};
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)aoRetornar()});
   window.addEventListener("focus",aoRetornar);
+  /* Atualização periódica enquanto a página está aberta e visível. */
+  window.setInterval(()=>{if(!document.hidden&&Date.now()-ultimaVerificacao>=60000)void conferirListas()},60000);
   window.addEventListener("pageshow",evento=>{if(evento.persisted)void conferirListas()});
 })();
 
