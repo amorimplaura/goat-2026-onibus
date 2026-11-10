@@ -123,3 +123,9 @@ cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()
   window.addEventListener("focus",aoRetornar);
   window.addEventListener("pageshow",evento=>{if(evento.persisted)void conferirListas()});
 })();
+
+/* No Safari e nos demais navegadores compatíveis, as próximas visitas
+ * buscam o HTML atualizado mantendo o mesmo endereço compartilhado. */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});
+}
