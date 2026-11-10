@@ -222,3 +222,20 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
 .request-submit:hover,.request-from-result:hover{background:#123a82}
 .request-from-result{width:100%;margin:16px 0 4px}
 .request-form [hidden]{display:none!important}
+
+/* Ação principal do formulário — leitura clara no computador e no celular */
+.request-actions{display:grid;gap:8px;margin-top:8px}
+.request-submit{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:62px;padding:17px 20px;border:0;border-radius:15px;background:linear-gradient(110deg,#15449b,#2766c4);color:#fff;font-family:inherit;font-size:16px;font-weight:800;letter-spacing:0;line-height:1.35;box-shadow:0 8px 20px rgba(21,68,155,.20);transition:transform .15s,box-shadow .15s,background .15s;cursor:pointer;text-align:left}
+.request-submit-icon{display:flex;justify-content:center;align-items:center;flex:none;border-radius:50%;width:32px;height:32px;font-size:23px;line-height:1;background:rgba(255,255,255,.20)}
+.request-submit:not(:disabled):hover{background:linear-gradient(110deg,#113780,#1d55af);transform:translateY(-1px);box-shadow:0 10px 22px rgba(21,68,155,.24)}
+.request-submit:focus-visible{outline:3px solid #ffca52;outline-offset:3px}
+.request-submit:disabled{cursor:not-allowed;opacity:.62;box-shadow:none;transform:none}
+.request-submit[aria-busy="true"] .request-submit-icon{animation:goat-enviando 1s ease-in-out infinite}
+@keyframes goat-enviando{50%{opacity:.4}}
+.request-submit-hint{margin:3px 0 0;color:#53647c;font-size:13px;line-height:1.5}
+.request-feedback:empty{display:none}
+.request-feedback{padding:13px 15px;border-radius:12px;margin:6px 0 0;background:#f0f4fb;color:#263d63;font-size:14px;line-height:1.5}
+.request-feedback-info{background:#eaf3ff;color:#1b487a}
+.request-feedback-error{background:#fff0f0;color:#922727}
+@media(max-width:540px){.request-submit{min-height:58px;font-size:15px;padding:15px 17px}.request-submit-icon{width:29px;height:29px}}
+@media(prefers-reduced-motion:reduce){.request-submit,.request-submit[aria-busy="true"] .request-submit-icon{animation:none;transition:none}}
