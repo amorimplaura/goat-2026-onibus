@@ -222,7 +222,7 @@ const PARTICIPANTES = [
     "onibus": 2
   },
   {
-    "nome": "Beatriz Bonfante Castilho.",
+    "nome": "Beatriz Bonfante Castilho",
     "perse": "P4",
     "observacao": "",
     "onibus": 2
