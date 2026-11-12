@@ -143,7 +143,7 @@ if("serviceWorker" in navigator){
  const find=name=>dados.find(p=>norm(p.nome)===norm(name));
  const options=document.getElementById("req-children");
  dados.slice().sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR")).forEach(p=>{const o=document.createElement("option");o.value=p.nome;options.appendChild(o)});
- for(let i=1;i<=11;i++){const o=document.createElement("option");o.value=String(i);o.textContent=bus(i);busSelect.appendChild(o)}
+ for(let i=1;i<=9;i++){const o=document.createElement("option");o.value=String(i);o.textContent=bus(i);busSelect.appendChild(o)}
  function update(){
   const p=find(child.value),friend=find(companion.value);
   current.textContent=p?bus(p.onibus)+" · "+p.perse:"Selecione um nome completo da lista.";
