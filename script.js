@@ -37,6 +37,7 @@ function mostrarResultado(crianca){
  '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças do '+bus(n)+'.</p>'+
  '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div></div>';
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="request-from-result">SOLICITAR ALTERAÇÃO DE ÔNIBUS ↗</button>');
+ detalhe.querySelector('.request-from-result').hidden=Date.now()>=Date.parse("2026-11-19T00:00:00-03:00");
  detalhe.querySelector('.request-from-result').addEventListener('click',()=>{document.getElementById('req-child').value=crianca.nome;document.getElementById('req-child').dispatchEvent(new Event('input'));document.getElementById('solicitacoes').scrollIntoView({behavior:'smooth'});});
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="search-again">PESQUISAR OUTRA CRIANÇA ↗</button>');
  resultados.appendChild(detalhe);
@@ -190,9 +191,25 @@ if("serviceWorker" in navigator){
 
  const ENDPOINT="https://script.google.com/macros/s/AKfycbzMeDVplfUWk_JHmLUBYEMryuF7E7zI_dz2wISk12_EpzB5xWKwraCrCmsNQ_CxlZHp/exec";
 
+ const LIMITE_SOLICITACOES=Date.parse("2026-11-19T00:00:00-03:00");
+ const expirouSolicitacoes=()=>Date.now()>=LIMITE_SOLICITACOES;
+ const avisoEncerrado=document.getElementById("req-closed");
+ const atualizarPrazo=()=>{
+   const encerrado=expirouSolicitacoes();
+   form.hidden=encerrado;
+   avisoEncerrado.hidden=!encerrado;
+   document.querySelectorAll(".request-from-result").forEach(b=>{b.hidden=encerrado;b.disabled=encerrado});
+   const atalho=document.querySelector(".quick-contact-button");
+   if(atalho){atalho.hidden=encerrado;}
+   const prazo=document.querySelector(".quick-contact-deadline");
+   if(prazo&&encerrado)prazo.textContent="Solicitações encerradas";
+ };
+ atualizarPrazo();
+ setInterval(atualizarPrazo,10000);
  const enviar=form.querySelector(".request-submit");
  form.addEventListener("submit",async e=>{
    e.preventDefault();
+   if(expirouSolicitacoes()){atualizarPrazo();return}
    const feedback=document.getElementById("req-feedback");
    const p=find(child.value),friend=find(companion.value),mode=type.value;
    if(!p){feedback.textContent="Selecione a criança da lista.";child.focus();return}
