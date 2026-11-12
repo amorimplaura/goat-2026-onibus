@@ -8,11 +8,8 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 let dados=typeof PARTICIPANTES==="undefined"?[]:PARTICIPANTES;
 const busca=document.querySelector("#pesquisa"),resultados=document.querySelector("#resultados"),cards=document.querySelector("#cards"),lista=document.querySelector("#lista-onibus");
 const bus=n=>"ÔNIBUS "+String(n).padStart(2,"0");
-const locais={
-  1:{rua:"Rua Jornalista Milton Amado",url:"https://www.google.com/maps/search/?api=1&query=Rua%20Jornalista%20Milton%20Amado%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG"},
-  2:{rua:"Rua José Mota Magalhães",url:"https://www.google.com/maps/search/?api=1&query=Rua%20Jos%C3%A9%20Mota%20Magalh%C3%A3es%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG"}
-};
-const local=n=>n<=6?locais[1]:locais[2];
+const referenciaMapa="https://www.google.com/maps/search/?api=1&query=Avenida%20Bento%20Sim%C3%A3o%20220%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG";
+const local=()=>({rua:"Avenida Bento Simão, 220 (referência)",url:referenciaMapa});
 function pesquisar(){
  const q=norm(busca.value);resultados.replaceChildren();
  if(!q)return;
@@ -36,7 +33,7 @@ function mostrarResultado(crianca){
  detalhe.innerHTML='<div class="inline-detail-head"><small>RESULTADO DA CONSULTA</small><button type="button" class="change-search">ALTERAR NOME ×</button></div>'+
  '<h3 class="child-name">'+esc(crianca.nome)+'</h3>'+
  '<div class="inline-bus"><small>ÔNIBUS DA CRIANÇA</small><strong>'+bus(n)+'</strong></div>'+
- '<div class="inline-location"><small>LOCAL DE SAÍDA · SEXTA 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Bairro São Bento · Belo Horizonte/MG</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 ABRIR NO GOOGLE MAPS ↗</a></div>'+
+ '<div class="inline-location"><small>REFERÊNCIA DE EMBARQUE · 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Rua do ônibus a confirmar no dia · São Bento · BH</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 VER REFERÊNCIA NO MAPA ↗</a></div>'+
  '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças do '+bus(n)+'.</p>'+
  '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div></div>';
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="request-from-result">SOLICITAR ALTERAÇÃO DE ÔNIBUS ↗</button>');
@@ -52,7 +49,7 @@ function abrir(n,destaque="",rolar=true){
   const pessoas=dados.filter(p=>Number(p.onibus)===n),l=local(n);
   lista.hidden=false;
   lista.innerHTML='<div class="lista-head"><div><small>LISTA COMPLETA</small><h3>'+bus(n)+'</h3></div><button type="button" class="close-list">Fechar ×</button></div>'+
-    '<div class="list-location"><div><small>SAÍDA · 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>São Bento · Belo Horizonte/MG</span></div><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">ABRIR MAPA ↗</a></div>'+
+    '<div class="list-location"><div><small>SAÍDA · 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Rua de cada ônibus a confirmar no dia · São Bento · BH</span></div><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">ABRIR MAPA ↗</a></div>'+
     (destaque?'<p class="found-note">Nome pesquisado destacado em amarelo na lista.</p>':'')+
     '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(destaque&&norm(p.nome)===norm(destaque)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div>';
   lista.querySelector(".close-list").addEventListener("click",()=>{lista.hidden=true;cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed","false"))});
