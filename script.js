@@ -157,7 +157,7 @@ if("serviceWorker" in navigator){
      const q=norm(field.value);clear.hidden=!field.value;
      suggestions.replaceChildren();
      if(!q){suggestions.hidden=true;field.setAttribute("aria-expanded","false");return}
-     const hits=sorted.filter(p=>norm(p.nome).includes(q)).slice(0,12);
+     const hits=sorted.filter(p=>norm(p.nome).includes(q)).slice(0,15);
      for(const p of hits){
        const option=document.createElement("button");option.type="button";option.className="goat-name-option";option.textContent=p.nome;
        option.addEventListener("pointerdown",e=>e.preventDefault());
@@ -168,6 +168,7 @@ if("serviceWorker" in navigator){
    };
    field.addEventListener("input",refresh);
    field.addEventListener("focus",()=>{field.select();refresh()});
+   field.addEventListener("click",refresh);
    field.addEventListener("keydown",e=>{
      if(e.key==="Escape"){suggestions.hidden=true;field.setAttribute("aria-expanded","false");field.blur()}
      if(e.key==="ArrowDown"&&!suggestions.hidden){e.preventDefault();suggestions.querySelector("button")?.focus()}
