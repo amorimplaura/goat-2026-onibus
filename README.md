@@ -8,7 +8,7 @@ Ative **Settings → Pages → Deploy from a branch → main → /(root)**.
 
 ## Dados
 
-O arquivo `dados.js` contém os 325 participantes. Ele precisa ser enviado para a raiz do repositório. Atualizações não são sincronizadas automaticamente com a planilha.
+O arquivo `dados.js` contém os 315 participantes. Ele precisa ser enviado para a raiz do repositório. Atualizações não são sincronizadas automaticamente com a planilha.
 
 ## Privacidade
 
