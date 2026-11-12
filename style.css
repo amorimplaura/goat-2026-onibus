@@ -250,3 +250,8 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
 .goat-name-option{display:block;width:100%;padding:13px 15px;text-align:left;border:0;border-bottom:1px solid #edf1f8;background:#fff;color:#19365e;font:inherit;font-size:15px;cursor:pointer;white-space:normal;line-height:1.35}
 .goat-name-option:last-child{border-bottom:0}
 .goat-name-option:hover,.goat-name-option:focus-visible{background:#e9f1ff;outline:none}
+
+/* Sugestões visíveis logo abaixo do campo, sem sobrepor nem ficar atrás do formulário no iPhone */
+.request-form .goat-name-picker{display:block;position:relative;overflow:visible;min-width:0}
+.request-form .goat-name-suggestions:not([hidden]){display:block;position:relative;top:auto;left:auto;right:auto;z-index:1;margin-top:7px;width:100%;max-height:245px;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2px solid #b4c8ee;border-radius:12px;background:#fff;box-shadow:0 5px 14px rgba(25,55,105,.12)}
+.request-form .goat-name-option{display:block;width:100%;min-height:46px;padding:12px 14px;color:#173965;background:#fff;text-align:left;font-size:15px;white-space:normal}
