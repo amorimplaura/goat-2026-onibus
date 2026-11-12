@@ -142,7 +142,42 @@ if("serviceWorker" in navigator){
  const current=document.getElementById("req-current"),compInfo=document.getElementById("req-companion-info");
  const find=name=>dados.find(p=>norm(p.nome)===norm(name));
  const options=document.getElementById("req-children");
- dados.slice().sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR")).forEach(p=>{const o=document.createElement("option");o.value=p.nome;options.appendChild(o)});
+ // Seletor próprio: a lista nativa do iPhone pode prender o nome selecionado.
+ const sorted=dados.slice().sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR"));
+ for(const field of [child,companion]){
+   field.removeAttribute("list");
+   field.setAttribute("autocomplete","off");
+   const wrapper=document.createElement("div");wrapper.className="goat-name-picker";
+   field.parentNode.insertBefore(wrapper,field);wrapper.appendChild(field);
+   const clear=document.createElement("button");clear.type="button";clear.className="goat-name-clear";clear.textContent="×";clear.setAttribute("aria-label","Limpar nome e escolher outra criança");
+   const suggestions=document.createElement("div");suggestions.className="goat-name-suggestions";suggestions.hidden=true;
+   wrapper.append(clear,suggestions);
+   field.setAttribute("role","combobox");field.setAttribute("aria-autocomplete","list");field.setAttribute("aria-expanded","false");
+   const refresh=()=>{
+     const q=norm(field.value);clear.hidden=!field.value;
+     suggestions.replaceChildren();
+     if(!q){suggestions.hidden=true;field.setAttribute("aria-expanded","false");return}
+     const hits=sorted.filter(p=>norm(p.nome).includes(q)).slice(0,12);
+     for(const p of hits){
+       const option=document.createElement("button");option.type="button";option.className="goat-name-option";option.textContent=p.nome;
+       option.addEventListener("pointerdown",e=>e.preventDefault());
+       option.addEventListener("click",()=>{field.value=p.nome;field.dispatchEvent(new Event("input",{bubbles:true}));suggestions.hidden=true;field.setAttribute("aria-expanded","false");field.blur()});
+       suggestions.appendChild(option);
+     }
+     suggestions.hidden=!hits.length;field.setAttribute("aria-expanded",String(!!hits.length));
+   };
+   field.addEventListener("input",refresh);
+   field.addEventListener("focus",()=>{field.select();refresh()});
+   field.addEventListener("keydown",e=>{
+     if(e.key==="Escape"){suggestions.hidden=true;field.setAttribute("aria-expanded","false");field.blur()}
+     if(e.key==="ArrowDown"&&!suggestions.hidden){e.preventDefault();suggestions.querySelector("button")?.focus()}
+   });
+   suggestions.addEventListener("keydown",e=>{if(e.key==="Escape"){suggestions.hidden=true;field.focus()}});
+   field.addEventListener("blur",()=>setTimeout(()=>{if(!wrapper.contains(document.activeElement)){suggestions.hidden=true;field.setAttribute("aria-expanded","false")}},120));
+   clear.addEventListener("click",()=>{field.value="";field.dispatchEvent(new Event("input",{bubbles:true}));field.focus()});
+   refresh();
+ }
+
  for(let i=1;i<=9;i++){const o=document.createElement("option");o.value=String(i);o.textContent=bus(i);busSelect.appendChild(o)}
  function update(){
   const p=find(child.value),friend=find(companion.value);
