@@ -810,6 +810,12 @@ const PARTICIPANTES = [
     "onibus": 4
   },
   {
+    "nome": "Luisa Caram Monteiro Pizani Magalhães",
+    "perse": "P4",
+    "observacao": "",
+    "onibus": 4
+  },
+  {
     "nome": "Luiza Martins Pimenta",
     "perse": "P4",
     "observacao": "",
@@ -1507,6 +1513,12 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Clara Moreira Zanforlin",
+    "perse": "P2",
+    "observacao": "",
+    "onibus": 8
+  },
+  {
+    "nome": "Clara Salgado Vladimirky",
     "perse": "P2",
     "observacao": "",
     "onibus": 8
