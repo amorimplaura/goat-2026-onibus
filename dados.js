@@ -906,12 +906,6 @@ const PARTICIPANTES = [
     "onibus": 5
   },
   {
-    "nome": "Gabriela Santos Araujo",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 5
-  },
-  {
     "nome": "Giovanna Alves De Oliveira Barbosa",
     "perse": "P3",
     "observacao": "",
@@ -1117,6 +1111,12 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Felipe Carmo Oliveira Soares",
+    "perse": "P3",
+    "observacao": "",
+    "onibus": 6
+  },
+  {
+    "nome": "Gabriela Santos Araujo",
     "perse": "P3",
     "observacao": "",
     "onibus": 6
