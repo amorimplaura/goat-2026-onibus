@@ -15,7 +15,7 @@ const PARTICIPANTES = [
     "nome": "Carolina Alvares Marinho Maldonado",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 3
   },
   {
     "nome": "Felipe De Aquino Lima Andrade Oliveira",
@@ -273,13 +273,13 @@ const PARTICIPANTES = [
     "nome": "Helena Nery",
     "perse": "P4",
     "observacao": "",
-    "onibus": 2
+    "onibus": 3
   },
   {
     "nome": "Henrique Leonardo Diniz",
     "perse": "P4",
     "observacao": "",
-    "onibus": 2
+    "onibus": 3
   },
   {
     "nome": "Isabela Guerra Vidigal Lopes",
