@@ -1651,8 +1651,8 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Luana Nery Madureira de Araújo",
-    "perse": "Sem Persê",
-    "observacao": "Transporte a confirmar",
+    "perse": "P4",
+    "observacao": "",
     "onibus": 8
   },
   {
