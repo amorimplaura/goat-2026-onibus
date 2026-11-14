@@ -129,7 +129,7 @@ const PARTICIPANTES = [
     "nome": "Marina Gomide Vilela De Carvalho",
     "perse": "P4",
     "observacao": "Somente ida — não retorna no ônibus",
-    "onibus": 1
+    "onibus": 4
   },
   {
     "nome": "Olivia Serafini Dias",
@@ -153,7 +153,7 @@ const PARTICIPANTES = [
     "nome": "Stella Paes Goulart",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 2
   },
   {
     "nome": "Tales Barroso Carneiro",
@@ -183,7 +183,7 @@ const PARTICIPANTES = [
     "nome": "Tomás Coelho Da Silveira Rezende",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 4
   },
   {
     "nome": "Valentina Garracio Petrelli Rocha",
@@ -447,7 +447,7 @@ const PARTICIPANTES = [
     "nome": "Antonio Carlos Alves Lopes",
     "perse": "P4",
     "observacao": "",
-    "onibus": 3
+    "onibus": 4
   },
   {
     "nome": "Arthur Lima Costa",
@@ -513,7 +513,7 @@ const PARTICIPANTES = [
     "nome": "Isabela Oliveira Lopes Donzele",
     "perse": "P4",
     "observacao": "",
-    "onibus": 3
+    "onibus": 1
   },
   {
     "nome": "Isadora Mourthé Andrade Xavier",
@@ -711,7 +711,7 @@ const PARTICIPANTES = [
     "nome": "Izabela Dutra De Araújo",
     "perse": "P4",
     "observacao": "",
-    "onibus": 4
+    "onibus": 2
   },
   {
     "nome": "Júlia Clarizia Andrade",
@@ -1143,7 +1143,7 @@ const PARTICIPANTES = [
     "nome": "Júlia De Oliveira Farah",
     "perse": "P3",
     "observacao": "",
-    "onibus": 6
+    "onibus": 7
   },
   {
     "nome": "Júlia Mendes Kalid",
