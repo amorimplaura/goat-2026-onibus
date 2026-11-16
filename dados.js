@@ -60,12 +60,6 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
-    "nome": "Julia Azevedo Sabino",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Júlia Lamounier Moura Moreira Cordeiro",
     "perse": "P4",
     "observacao": "",
