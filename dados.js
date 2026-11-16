@@ -276,12 +276,6 @@ const PARTICIPANTES = [
     "onibus": 3
   },
   {
-    "nome": "Henrique Leonardo Diniz",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 3
-  },
-  {
     "nome": "Isabela Guerra Vidigal Lopes",
     "perse": "P4",
     "observacao": "",
