@@ -42,12 +42,6 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
-    "nome": "Henrique Teixeira Viegas Rangel",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Isabella Resende Silva",
     "perse": "P4",
     "observacao": "Somente volta — chega sábado de manhã",
@@ -1534,12 +1528,6 @@ const PARTICIPANTES = [
     "perse": "P2",
     "observacao": "",
     "onibus": 6
-  },
-  {
-    "nome": "Gabriel Teixeira Viegas Rangel",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 8
   },
   {
     "nome": "Gabriela Bolivar Chagas Soares",
