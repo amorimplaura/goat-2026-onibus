@@ -318,12 +318,6 @@ const PARTICIPANTES = [
     "onibus": 2
   },
   {
-    "nome": "Luisa Vieira Fragoso",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 2
-  },
-  {
     "nome": "Manuela Matos De Sá Peixoto",
     "perse": "P4",
     "observacao": "",
@@ -1270,12 +1264,6 @@ const PARTICIPANTES = [
     "perse": "P3",
     "observacao": "",
     "onibus": 6
-  },
-  {
-    "nome": "Ana Spinola Albano Andrade",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 7
   },
   {
     "nome": "Bernardo Ferreira De Souza",
