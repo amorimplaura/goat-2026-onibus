@@ -81,7 +81,7 @@ const PARTICIPANTES = [
     "nome": "Juliana Moreira De Figueiredo",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 2
   },
   {
     "nome": "Luca Kokaev De Castro Turci",
@@ -117,7 +117,7 @@ const PARTICIPANTES = [
     "nome": "Maria Clara Maciel Giacomin",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 2
   },
   {
     "nome": "Maria Martins Lopes",
@@ -393,7 +393,7 @@ const PARTICIPANTES = [
     "nome": "Silvia Fonseca De Melo",
     "perse": "P4",
     "observacao": "",
-    "onibus": 2
+    "onibus": 5
   },
   {
     "nome": "Sofia Gallo Borges",
@@ -705,7 +705,7 @@ const PARTICIPANTES = [
     "nome": "Izabela Dutra De Araújo",
     "perse": "P4",
     "observacao": "",
-    "onibus": 2
+    "onibus": 5
   },
   {
     "nome": "Júlia Clarizia Andrade",
@@ -735,7 +735,7 @@ const PARTICIPANTES = [
     "nome": "Julia Soares Rievrs",
     "perse": "P4",
     "observacao": "",
-    "onibus": 4
+    "onibus": 5
   },
   {
     "nome": "Júlia Varella Oliveira",
@@ -1243,9 +1243,9 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Rafael Lima De Sales",
-    "perse": "P3",
+    "perse": "P4",
     "observacao": "",
-    "onibus": 6
+    "onibus": 4
   },
   {
     "nome": "Rafael Lima Ventura",
@@ -1641,7 +1641,7 @@ const PARTICIPANTES = [
     "nome": "Livia Soares Rievrs",
     "perse": "P0",
     "observacao": "",
-    "onibus": 8
+    "onibus": 9
   },
   {
     "nome": "Luana Nery Madureira de Araújo",
@@ -1659,7 +1659,7 @@ const PARTICIPANTES = [
     "nome": "Maria Carolina Da Mata Borges Lima",
     "perse": "P2",
     "observacao": "",
-    "onibus": 8
+    "onibus": 7
   },
   {
     "nome": "Maria Luiza Barbi Rodrigues",
@@ -1912,5 +1912,11 @@ const PARTICIPANTES = [
     "perse": "P4",
     "observacao": "",
     "onibus": 4
+  },
+  {
+    "nome": "Theo Manata Soares Oliveira",
+    "perse": "P3",
+    "observacao": "",
+    "onibus": 6
   }
 ];
