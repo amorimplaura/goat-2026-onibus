@@ -813,7 +813,7 @@ const PARTICIPANTES = [
     "nome": "Adriano Cotta Correa",
     "perse": "P3",
     "observacao": "",
-    "onibus": 5
+    "onibus": 7
   },
   {
     "nome": "André Espíndola Chaves De Morais",
@@ -861,7 +861,7 @@ const PARTICIPANTES = [
     "nome": "Esther Silva De Almeida",
     "perse": "P3",
     "observacao": "",
-    "onibus": 5
+    "onibus": 6
   },
   {
     "nome": "Francisco Fiorino Reis Procópio",
@@ -1377,7 +1377,7 @@ const PARTICIPANTES = [
     "nome": "Malu Melgaço Moraes Carvalho Friche",
     "perse": "P3",
     "observacao": "",
-    "onibus": 7
+    "onibus": 6
   },
   {
     "nome": "Manuela Cancellieri De Moura",
