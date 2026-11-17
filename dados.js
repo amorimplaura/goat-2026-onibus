@@ -315,7 +315,7 @@ const PARTICIPANTES = [
     "nome": "Maria Eduarda Melo Araújo",
     "perse": "P4",
     "observacao": "",
-    "onibus": 2
+    "onibus": 1
   },
   {
     "nome": "Maria Eduarda Navarro Ribas De Castro",
@@ -537,7 +537,7 @@ const PARTICIPANTES = [
     "nome": "Maria Clara Araújo Santana",
     "perse": "P4",
     "observacao": "",
-    "onibus": 3
+    "onibus": 1
   },
   {
     "nome": "Maria Correa Prado",
