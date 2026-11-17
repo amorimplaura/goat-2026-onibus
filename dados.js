@@ -96,12 +96,6 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
-    "nome": "Marcos Henrique Da Silva Neto",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Maria Clara Maciel Giacomin",
     "perse": "P4",
     "observacao": "",
