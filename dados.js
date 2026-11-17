@@ -1425,7 +1425,7 @@ const PARTICIPANTES = [
     "nome": "Pedro Morais Faria",
     "perse": "P2",
     "observacao": "",
-    "onibus": 7
+    "onibus": 8
   },
   {
     "nome": "Sara Damásio Coutinho Motta",
