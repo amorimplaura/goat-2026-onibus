@@ -426,12 +426,6 @@ const PARTICIPANTES = [
     "onibus": 3
   },
   {
-    "nome": "Caio Rezende Lopes",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 3
-  },
-  {
     "nome": "Catarina Camara Maia Kury Coelho",
     "perse": "P4",
     "observacao": "",
