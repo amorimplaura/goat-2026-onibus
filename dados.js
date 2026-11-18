@@ -1888,5 +1888,11 @@ const PARTICIPANTES = [
     "perse": "P1",
     "observacao": "",
     "onibus": 7
+  },
+  {
+    "nome": "Luísa Longuinho Costa",
+    "perse": "P2",
+    "observacao": "",
+    "onibus": 5
   }
 ];
