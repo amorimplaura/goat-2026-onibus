@@ -1876,5 +1876,11 @@ const PARTICIPANTES = [
     "perse": "P3",
     "observacao": "",
     "onibus": 6
+  },
+  {
+    "nome": "Caio Rezende Lopes",
+    "perse": "P4",
+    "observacao": "",
+    "onibus": 1
   }
 ];
