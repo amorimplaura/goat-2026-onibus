@@ -57,7 +57,7 @@ const PARTICIPANTES = [
     "nome": "Joana Almeida Nazareth",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 3
   },
   {
     "nome": "Júlia Lamounier Moura Moreira Cordeiro",
