@@ -3,7 +3,7 @@ const PARTICIPANTES = [
     "nome": "Ana Flávia Carvalho Santos Teixeira",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 3
   },
   {
     "nome": "André Gomes De Souza Santos",
@@ -1563,7 +1563,7 @@ const PARTICIPANTES = [
     "nome": "Isabela Braga De Mello",
     "perse": "P2",
     "observacao": "",
-    "onibus": 8
+    "onibus": 6
   },
   {
     "nome": "Isabella Shiguetaka Afonso",
