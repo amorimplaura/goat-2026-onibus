@@ -627,7 +627,7 @@ const PARTICIPANTES = [
     "nome": "Cecília Tibo Hoffmann",
     "perse": "P4",
     "observacao": "",
-    "onibus": 4
+    "onibus": 2
   },
   {
     "nome": "Enzo Miguel Gregório E Almeida",
