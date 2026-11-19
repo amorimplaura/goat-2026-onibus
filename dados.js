@@ -1299,7 +1299,7 @@ const PARTICIPANTES = [
     "nome": "Gabriel Andrade Reis Rodrigues Ferreira",
     "perse": "P2",
     "observacao": "",
-    "onibus": 7
+    "onibus": 8
   },
   {
     "nome": "Giovanna Cavallaro Resende",
