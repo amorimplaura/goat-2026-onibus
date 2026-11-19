@@ -33,7 +33,7 @@ const PARTICIPANTES = [
     "nome": "Fernanda Magalhães Machado Barbosa",
     "perse": "P4",
     "observacao": "",
-    "onibus": 1
+    "onibus": 8
   },
   {
     "nome": "Gabriella Moreira Gomes Patrocínio",
@@ -453,7 +453,7 @@ const PARTICIPANTES = [
     "nome": "Estela Fonseca De Medeiros Limp",
     "perse": "P4",
     "observacao": "",
-    "onibus": 3
+    "onibus": 8
   },
   {
     "nome": "Gabriela Aquino Rabello",
@@ -1821,7 +1821,7 @@ const PARTICIPANTES = [
     "nome": "Pietra Dupin Gandra Peixoto",
     "perse": "P2",
     "observacao": "",
-    "onibus": 9
+    "onibus": 8
   },
   {
     "nome": "Pietra Pinto Coelho Maia",
