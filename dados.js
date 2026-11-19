@@ -1894,5 +1894,11 @@ const PARTICIPANTES = [
     "perse": "P2",
     "observacao": "",
     "onibus": 7
+  },
+  {
+    "nome": "Gabriel Lucca Rodrigues Soares",
+    "perse": "P2",
+    "observacao": "Somente volta",
+    "onibus": 8
   }
 ];
