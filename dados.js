@@ -1371,7 +1371,7 @@ const PARTICIPANTES = [
     "nome": "Malu Melgaço Moraes Carvalho Friche",
     "perse": "P3",
     "observacao": "",
-    "onibus": 6
+    "onibus": 7
   },
   {
     "nome": "Manuela Cancellieri De Moura",
