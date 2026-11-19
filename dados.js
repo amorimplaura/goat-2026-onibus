@@ -453,7 +453,7 @@ const PARTICIPANTES = [
     "nome": "Estela Fonseca De Medeiros Limp",
     "perse": "P4",
     "observacao": "",
-    "onibus": 8
+    "onibus": 3
   },
   {
     "nome": "Gabriela Aquino Rabello",
