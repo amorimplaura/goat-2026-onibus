@@ -1005,7 +1005,7 @@ const PARTICIPANTES = [
     "nome": "Theo Rangel Romanelli",
     "perse": "P3",
     "observacao": "",
-    "onibus": 5
+    "onibus": 6
   },
   {
     "nome": "Valentina Dayrell Lucas",
