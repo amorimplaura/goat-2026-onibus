@@ -849,7 +849,7 @@ const PARTICIPANTES = [
     "nome": "Catarina Fortunato Dias",
     "perse": "P3",
     "observacao": "",
-    "onibus": 5
+    "onibus": 7
   },
   {
     "nome": "Esther Silva De Almeida",
@@ -1101,7 +1101,7 @@ const PARTICIPANTES = [
     "nome": "Isabela Ruas Magesty",
     "perse": "P3",
     "observacao": "",
-    "onibus": 6
+    "onibus": 7
   },
   {
     "nome": "Júlia De Oliveira Farah",
@@ -1893,6 +1893,6 @@ const PARTICIPANTES = [
     "nome": "Luísa Longuinho Costa",
     "perse": "P2",
     "observacao": "",
-    "onibus": 5
+    "onibus": 7
   }
 ];
