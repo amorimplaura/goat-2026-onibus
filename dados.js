@@ -423,7 +423,7 @@ const PARTICIPANTES = [
     "nome": "Arthur Lima Costa",
     "perse": "P4",
     "observacao": "",
-    "onibus": 3
+    "onibus": 5
   },
   {
     "nome": "Catarina Camara Maia Kury Coelho",
@@ -603,7 +603,7 @@ const PARTICIPANTES = [
     "nome": "Arthur Freitas Luciano",
     "perse": "P4",
     "observacao": "",
-    "onibus": 4
+    "onibus": 5
   },
   {
     "nome": "Bernardo De Oliveira Farah",
@@ -1215,7 +1215,7 @@ const PARTICIPANTES = [
     "nome": "Rafael Lima De Sales",
     "perse": "P4",
     "observacao": "",
-    "onibus": 4
+    "onibus": 5
   },
   {
     "nome": "Rafael Lima Ventura",
