@@ -828,12 +828,6 @@ const PARTICIPANTES = [
     "onibus": 5
   },
   {
-    "nome": "Bento Duarte Massa",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 5
-  },
-  {
     "nome": "Bernardo Mayrink Côrtes Gonçalves",
     "perse": "P1",
     "observacao": "",
@@ -1843,12 +1837,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Sofia Cançado Santos",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 9
-  },
-  {
-    "nome": "Vitória Duarte Massa",
     "perse": "P2",
     "observacao": "",
     "onibus": 9
