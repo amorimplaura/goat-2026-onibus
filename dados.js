@@ -1872,12 +1872,6 @@ const PARTICIPANTES = [
     "onibus": 9
   },
   {
-    "nome": "Ricardo Barros Ferreira De Melo",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 9
-  },
-  {
     "nome": "Samuel Ladeira Martins Ferreira Cláudio",
     "perse": "P1",
     "observacao": "",
