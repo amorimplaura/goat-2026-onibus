@@ -6,7 +6,7 @@
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let dados=typeof PARTICIPANTES==="undefined"?[]:PARTICIPANTES;
-const servos=typeof SERVOS==="undefined"?[]:SERVOS;
+let servos=typeof SERVOS==="undefined"?[]:SERVOS;
 const busca=document.querySelector("#pesquisa"),resultados=document.querySelector("#resultados"),cards=document.querySelector("#cards"),lista=document.querySelector("#lista-onibus");
 const bus=n=>"ÔNIBUS "+String(n).padStart(2,"0");
 const referenciaMapa="https://www.google.com/maps/search/?api=1&query=Avenida%20Bento%20Sim%C3%A3o%20220%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG";
@@ -38,9 +38,6 @@ function mostrarResultado(crianca){
  '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças e servos do '+bus(n)+'.</p>'+
  '<h5 class="roster-group-title">CRIANÇAS ('+pessoas.length+')</h5><div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div>'+
   '<h5 class="roster-group-title">SERVOS ('+equipe.length+')</h5><div class="passenger-list">'+equipe.map(p=>'<div class="passenger"><div><strong>'+esc(p.nome)+'</strong><small>Servo</small></div><span>'+(p.responsavel?'Responsável pelo ônibus':'')+'</span></div>').join('')+'</div></div>';
- detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="request-from-result">SOLICITAR ALTERAÇÃO DE ÔNIBUS ↗</button>');
- detalhe.querySelector('.request-from-result').hidden=Date.now()>=Date.parse("2026-11-19T00:00:00-03:00");
- detalhe.querySelector('.request-from-result').addEventListener('click',()=>{document.getElementById('req-child').value=crianca.nome;document.getElementById('req-child').dispatchEvent(new Event('input'));document.getElementById('solicitacoes').scrollIntoView({behavior:'smooth'});});
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="search-again">PESQUISAR OUTRA CRIANÇA ↗</button>');
  resultados.appendChild(detalhe);
  const reiniciar=()=>{busca.value="";resultados.replaceChildren();busca.focus()};
@@ -92,17 +89,19 @@ cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()
       const resposta=await fetch("dados.js?atualizacao="+Date.now(),{cache:"no-store"});
       if(!resposta.ok)throw new Error("HTTP "+resposta.status);
       const texto=await resposta.text();
-      const inicio=texto.indexOf("[");
-      const fim=texto.lastIndexOf("]");
-      if(inicio<0||fim<inicio)throw new Error("Arquivo de listas inválido");
-      const novos=JSON.parse(texto.slice(inicio,fim+1));
-      if(!Array.isArray(novos)||!novos.length||novos.some(p=>!p.nome||!Number.isInteger(Number(p.onibus))))throw new Error("Dados incompletos");
-      const mudou=JSON.stringify(novos)!==JSON.stringify(dados);
+      const participantes=texto.match(/const PARTICIPANTES\s*=\s*(\[[\s\S]*?\]);/);
+      const equipeTexto=texto.match(/const SERVOS\s*=\s*(\[[\s\S]*?\]);/);
+      if(!participantes||!equipeTexto)throw new Error("Arquivo de listas inválido");
+      const novos=JSON.parse(participantes[1]),novosServos=JSON.parse(equipeTexto[1]);
+      if(!Array.isArray(novos)||!novos.length||novos.some(p=>!p.nome||!Number.isInteger(Number(p.onibus))))throw new Error("Lista de crianças incompleta");
+      if(!Array.isArray(novosServos)||novosServos.some(p=>!p.nome||!Number.isInteger(Number(p.onibus))))throw new Error("Lista de servos incompleta");
+      const mudou=JSON.stringify(novos)!==JSON.stringify(dados)||JSON.stringify(novosServos)!==JSON.stringify(servos);
       if(mudou){
         const selecionado=resultados.querySelector(".child-name")?.textContent;
         const aberto=cards.querySelector('[aria-pressed="true"]');
         const onibusAberto=aberto&&!lista.hidden?Number(aberto.dataset.onibus):null;
         dados=novos;
+        servos=novosServos;
         if(selecionado){
           const pessoa=dados.find(p=>norm(p.nome)===norm(selecionado));
           if(pessoa)mostrarResultado(pessoa);else pesquisar();
@@ -134,117 +133,3 @@ cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()
 if("serviceWorker" in navigator){
   navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});
 }
-
-/* Solicitações enviadas ao Apps Script; não alterar listas automaticamente. */
-(function(){
- const form=document.getElementById("request-form");if(!form)return;
- const child=document.getElementById("req-child"),companion=document.getElementById("req-companion");
- const type=document.getElementById("req-type"),busSelect=document.getElementById("req-bus");
- const current=document.getElementById("req-current"),compInfo=document.getElementById("req-companion-info");
- const find=name=>dados.find(p=>norm(p.nome)===norm(name));
- const options=document.getElementById("req-children");
- // Seletor próprio: a lista nativa do iPhone pode prender o nome selecionado.
- const sorted=dados.slice().sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR"));
- for(const field of [child,companion]){
-   field.removeAttribute("list");
-   field.setAttribute("autocomplete","off");
-   const wrapper=document.createElement("div");wrapper.className="goat-name-picker";
-   field.parentNode.insertBefore(wrapper,field);wrapper.appendChild(field);
-   const clear=document.createElement("button");clear.type="button";clear.className="goat-name-clear";clear.textContent="×";clear.setAttribute("aria-label","Limpar nome e escolher outra criança");
-   const suggestions=document.createElement("div");suggestions.className="goat-name-suggestions";suggestions.hidden=true;
-   wrapper.append(clear,suggestions);
-   field.setAttribute("role","combobox");field.setAttribute("aria-autocomplete","list");field.setAttribute("aria-expanded","false");
-   const refresh=()=>{
-     const q=norm(field.value);clear.hidden=!field.value;
-     suggestions.replaceChildren();
-     if(!q){suggestions.hidden=true;field.setAttribute("aria-expanded","false");return}
-     const hits=sorted.filter(p=>norm(p.nome).includes(q)).slice(0,15);
-     for(const p of hits){
-       const option=document.createElement("button");option.type="button";option.className="goat-name-option";option.textContent=p.nome;
-       option.addEventListener("pointerdown",e=>e.preventDefault());
-       option.addEventListener("click",()=>{field.value=p.nome;field.dispatchEvent(new Event("input",{bubbles:true}));suggestions.hidden=true;field.setAttribute("aria-expanded","false");field.blur()});
-       suggestions.appendChild(option);
-     }
-     suggestions.hidden=!hits.length;field.setAttribute("aria-expanded",String(!!hits.length));
-   };
-   field.addEventListener("input",refresh);
-   field.addEventListener("focus",()=>{field.select();refresh()});
-   field.addEventListener("click",refresh);
-   field.addEventListener("keydown",e=>{
-     if(e.key==="Escape"){suggestions.hidden=true;field.setAttribute("aria-expanded","false");field.blur()}
-     if(e.key==="ArrowDown"&&!suggestions.hidden){e.preventDefault();suggestions.querySelector("button")?.focus()}
-   });
-   suggestions.addEventListener("keydown",e=>{if(e.key==="Escape"){suggestions.hidden=true;field.focus()}});
-   field.addEventListener("blur",()=>setTimeout(()=>{if(!wrapper.contains(document.activeElement)){suggestions.hidden=true;field.setAttribute("aria-expanded","false")}},120));
-   clear.addEventListener("click",()=>{field.value="";field.dispatchEvent(new Event("input",{bubbles:true}));field.focus()});
-   refresh();
- }
-
- for(let i=1;i<=9;i++){const o=document.createElement("option");o.value=String(i);o.textContent=bus(i);busSelect.appendChild(o)}
- function update(){
-  const p=find(child.value),friend=find(companion.value);
-  current.textContent=p?bus(p.onibus)+" · "+p.perse:"Selecione um nome completo da lista.";
-  compInfo.textContent=friend?bus(friend.onibus)+" · "+friend.perse:"";
-  const mode=type.value;
-  document.getElementById("req-companion-wrap").hidden=mode!=="companhia";
-  document.getElementById("req-bus-wrap").hidden=mode!=="onibus";
-  companion.required=mode==="companhia";busSelect.required=mode==="onibus";
- }
- child.addEventListener("input",update);companion.addEventListener("input",update);type.addEventListener("change",update);update();
-
- const ENDPOINT="https://script.google.com/macros/s/AKfycbzMeDVplfUWk_JHmLUBYEMryuF7E7zI_dz2wISk12_EpzB5xWKwraCrCmsNQ_CxlZHp/exec";
-
- const LIMITE_SOLICITACOES=Date.parse("2026-11-19T00:00:00-03:00");
- const expirouSolicitacoes=()=>Date.now()>=LIMITE_SOLICITACOES;
- const avisoEncerrado=document.getElementById("req-closed");
- const atualizarPrazo=()=>{
-   const encerrado=expirouSolicitacoes();
-   form.hidden=encerrado;
-   avisoEncerrado.hidden=!encerrado;
-   document.querySelectorAll(".request-from-result").forEach(b=>{b.hidden=encerrado;b.disabled=encerrado});
-   const atalho=document.querySelector(".quick-contact-button");
-   if(atalho){atalho.hidden=encerrado;}
-   const prazo=document.querySelector(".quick-contact-deadline");
-   if(prazo&&encerrado)prazo.textContent="Solicitações encerradas";
- };
- atualizarPrazo();
- setInterval(atualizarPrazo,10000);
- const enviar=form.querySelector(".request-submit");
- form.addEventListener("submit",async e=>{
-   e.preventDefault();
-   if(expirouSolicitacoes()){atualizarPrazo();return}
-   const feedback=document.getElementById("req-feedback");
-   const p=find(child.value),friend=find(companion.value),mode=type.value;
-   if(!p){feedback.textContent="Selecione a criança da lista.";child.focus();return}
-   if(mode==="companhia"&&!friend){feedback.textContent="Selecione a outra criança da lista.";companion.focus();return}
-   if(mode==="companhia"&&norm(p.nome)===norm(friend.nome)){feedback.textContent="Selecione uma outra criança.";return}
-   if(mode==="companhia"&&Number(p.onibus)===Number(friend.onibus)){feedback.textContent="As duas crianças já estão no mesmo ônibus.";return}
-   const tel=document.getElementById("req-phone").value.trim();
-   if(tel.replace(/\D/g,"").length<10){feedback.textContent="Confira o WhatsApp informado.";return}
-   const payload={
-     crianca:p.nome,perse:p.perse,onibusAtual:bus(p.onibus),tipo:mode,
-     outraCrianca:mode==="companhia"?friend.nome:"",
-     onibusDesejado:mode==="onibus"?bus(busSelect.value):"",
-     observacoes:document.getElementById("req-details").value.trim(),
-     responsavel:document.getElementById("req-parent").value.trim(),telefone:tel
-   };
-   enviar.disabled=true;
-   enviar.setAttribute("aria-busy","true");
-   enviar.querySelector(".request-submit-text").textContent="Enviando solicitação...";
-   feedback.className="request-feedback";
-   feedback.textContent="Enviando o pedido, não feche esta página.";
-   try{
-     await fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(payload),redirect:"follow"});
-     feedback.className="request-feedback request-feedback-info";
-     feedback.textContent="Solicitação encaminhada para análise! A organização verificará o pedido. A troca de ônibus depende de confirmação.";
-   }catch(err){
-     feedback.className="request-feedback request-feedback-error";
-     feedback.textContent="O envio não foi concluído. Confira sua conexão e tente novamente.";
-   }finally{
-     enviar.disabled=false;
-     enviar.removeAttribute("aria-busy");
-     enviar.querySelector(".request-submit-text").textContent="Enviar solicitação para análise";
-   }
- });
-
-})();
