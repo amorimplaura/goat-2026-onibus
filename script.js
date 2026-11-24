@@ -35,8 +35,9 @@ function mostrarResultado(crianca){
  '<h3 class="child-name">'+esc(crianca.nome)+'</h3>'+
  '<div class="inline-bus"><small>ÔNIBUS DA CRIANÇA</small><strong>'+bus(n)+'</strong></div>'+
  '<div class="inline-location"><small>REFERÊNCIA DE EMBARQUE · 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Rua do ônibus a confirmar no dia · São Bento · BH</span><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">📍 VER REFERÊNCIA NO MAPA ↗</a></div>'+
- '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças do '+bus(n)+'.</p>'+
- '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div></div>';
+ '<div class="inline-colleagues"><h4>Quem vai no mesmo ônibus?</h4><p>Confira abaixo a lista completa de crianças e servos do '+bus(n)+'.</p>'+
+ '<h5 class="roster-group-title">CRIANÇAS ('+pessoas.length+')</h5><div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(norm(p.nome)===norm(crianca.nome)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div>'+
+  '<h5 class="roster-group-title">SERVOS ('+equipe.length+')</h5><div class="passenger-list">'+equipe.map(p=>'<div class="passenger"><div><strong>'+esc(p.nome)+'</strong><small>Servo</small></div><span>'+(p.responsavel?'Responsável pelo ônibus':'')+'</span></div>').join('')+'</div></div>';
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="request-from-result">SOLICITAR ALTERAÇÃO DE ÔNIBUS ↗</button>');
  detalhe.querySelector('.request-from-result').hidden=Date.now()>=Date.parse("2026-11-19T00:00:00-03:00");
  detalhe.querySelector('.request-from-result').addEventListener('click',()=>{document.getElementById('req-child').value=crianca.nome;document.getElementById('req-child').dispatchEvent(new Event('input'));document.getElementById('solicitacoes').scrollIntoView({behavior:'smooth'});});
