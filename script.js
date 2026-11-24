@@ -6,6 +6,7 @@
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let dados=typeof PARTICIPANTES==="undefined"?[]:PARTICIPANTES;
+const servos=typeof SERVOS==="undefined"?[]:SERVOS;
 const busca=document.querySelector("#pesquisa"),resultados=document.querySelector("#resultados"),cards=document.querySelector("#cards"),lista=document.querySelector("#lista-onibus");
 const bus=n=>"ÔNIBUS "+String(n).padStart(2,"0");
 const referenciaMapa="https://www.google.com/maps/search/?api=1&query=Avenida%20Bento%20Sim%C3%A3o%20220%2C%20S%C3%A3o%20Bento%2C%20Belo%20Horizonte%2C%20MG";
@@ -27,7 +28,7 @@ function pesquisar(){
  if(encontrados.length===30){const t=document.createElement("p");t.className="consult-tip";t.textContent="Muitos resultados. Digite mais letras.";resultados.appendChild(t)}
 }
 function mostrarResultado(crianca){
- const n=Number(crianca.onibus),l=local(n),pessoas=dados.filter(p=>Number(p.onibus)===n);
+ const n=Number(crianca.onibus),l=local(n),pessoas=dados.filter(p=>Number(p.onibus)===n),equipe=servos.filter(p=>Number(p.onibus)===n);
  resultados.replaceChildren();
  const detalhe=document.createElement("section");detalhe.className="inline-detail";detalhe.setAttribute("aria-label","Resultado da consulta");
  detalhe.innerHTML='<div class="inline-detail-head"><small>RESULTADO DA CONSULTA</small><button type="button" class="change-search">ALTERAR NOME ×</button></div>'+
@@ -47,12 +48,13 @@ function mostrarResultado(crianca){
 }
 function abrir(n,destaque="",rolar=true){
   cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.onibus)===n)));
-  const pessoas=dados.filter(p=>Number(p.onibus)===n),l=local(n);
+  const pessoas=dados.filter(p=>Number(p.onibus)===n),equipe=servos.filter(p=>Number(p.onibus)===n),l=local(n);
   lista.hidden=false;
   lista.innerHTML='<div class="lista-head"><div><small>LISTA COMPLETA</small><h3>'+bus(n)+'</h3></div><button type="button" class="close-list">Fechar ×</button></div>'+
     '<div class="list-location"><div><small>SAÍDA · 27/11 ÀS 17h30</small><strong>'+esc(l.rua)+'</strong><span>Rua de cada ônibus a confirmar no dia · São Bento · BH</span></div><a href="'+l.url+'" target="_blank" rel="noopener noreferrer">ABRIR MAPA ↗</a></div>'+
     (destaque?'<p class="found-note">Nome pesquisado destacado em amarelo na lista.</p>':'')+
-    '<div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(destaque&&norm(p.nome)===norm(destaque)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div>';
+    '<h5 class="roster-group-title">CRIANÇAS ('+pessoas.length+')</h5><div class="passenger-list">'+pessoas.map(p=>'<div class="passenger'+(destaque&&norm(p.nome)===norm(destaque)?' passenger-highlight':'')+'"><div><strong>'+esc(p.nome)+'</strong><small>Turma '+esc(p.perse)+'</small></div><span>'+esc(p.observacao||"Ida e volta")+'</span></div>').join('')+'</div>'+
+    '<h5 class="roster-group-title">SERVOS ('+equipe.length+')</h5><div class="passenger-list">'+equipe.map(p=>'<div class="passenger"><div><strong>'+esc(p.nome)+'</strong><small>Servo</small></div><span>'+(p.responsavel?'Responsável pelo ônibus':'')+'</span></div>').join('')+'</div>';
   lista.querySelector(".close-list").addEventListener("click",()=>{lista.hidden=true;cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed","false"))});
   if(rolar)lista.scrollIntoView({behavior:"auto",block:"start"});
 }
