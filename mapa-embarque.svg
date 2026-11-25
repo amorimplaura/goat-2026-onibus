@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 875" role="img" aria-labelledby="title desc">
+<title id="title">Esquema de embarque dos ônibus</title>
+<desc id="desc">Mapa das ruas e posições previstas dos ônibus 1 a 9.</desc>
+<rect width="1280" height="875" fill="#fff"/>
+<g fill="none" stroke="#111" stroke-width="8" stroke-linecap="round">
+<path d="M20 14V850M1260 14V850" stroke-width="9"/>
+<path d="M138 20V850M1142 20V850" stroke-width="4" stroke-dasharray="36 28"/>
+<path d="M253 52V178H1028V52"/>
+<path d="M253 330V480H1028V330"/>
+<path d="M253 630V764M253 630H1028M1028 630V764"/>
+</g>
+<g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+<g fill="#2059b5">
+<rect x="300" y="187" width="170" height="43" rx="12"/><rect x="555" y="187" width="170" height="43" rx="12"/><rect x="810" y="187" width="170" height="43" rx="12"/>
+<rect x="411" y="280" width="172" height="42" rx="12"/><rect x="697" y="280" width="172" height="42" rx="12"/>
+<rect x="347" y="490" width="186" height="42" rx="12"/><rect x="744" y="490" width="187" height="42" rx="12"/>
+<rect x="347" y="583" width="186" height="42" rx="12"/><rect x="744" y="583" width="187" height="42" rx="12"/>
+</g>
+<g fill="#fff" font-size="20">
+<text x="385" y="215">ÔNIBUS 3</text><text x="640" y="215">ÔNIBUS 2</text><text x="895" y="215">ÔNIBUS 1</text>
+<text x="497" y="308">ÔNIBUS 5</text><text x="783" y="308">ÔNIBUS 4</text>
+<text x="440" y="518">ÔNIBUS 8</text><text x="837" y="518">ÔNIBUS 7</text>
+<text x="440" y="611">ÔNIBUS 9</text><text x="837" y="611">ÔNIBUS 6</text>
+</g>
+<g fill="#ffe326">
+<rect x="496" y="236" width="288" height="38" rx="9"/><rect x="496" y="538" width="288" height="38" rx="9"/>
+<rect x="40" y="367" width="194" height="87" rx="11"/><rect x="1049" y="368" width="196" height="87" rx="11"/>
+</g>
+<g fill="#111" font-size="20">
+<text x="640" y="261">Rua Jorn. Milton Amado</text><text x="640" y="563">Rua José Mota Magalhães</text>
+<text x="137" y="404">Av.</text><text x="137" y="433">Bento Simão</text>
+<text x="1147" y="405">Av. Cônsul</text><text x="1147" y="434">Antônio Cadar</text>
+</g>
+</g>
+</svg>
