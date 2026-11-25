@@ -126,6 +126,7 @@ main{padding-top:20px}.consult{margin-top:0}.departure{margin-top:28px}.alert{ma
 .search-person-name{font-size:17px;font-weight:800;line-height:1.35;flex:1;overflow-wrap:anywhere}
 .search-person-bus{font-size:15px;font-weight:900;background:#2052a9;color:#fff;border-radius:6px;padding:10px;white-space:nowrap}
 .search-person-bus span{font-size:22px;margin-left:4px}
+.search-person-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px;min-width:0}.search-person-street{max-width:230px;font-size:12px;line-height:1.2;color:#52647e;text-align:right}.search-person-trip{font-size:11px;font-weight:800;color:#91620d;text-align:right}
 .bus-list{scroll-margin-top:12px}
 .lista-head{position:relative}
 .lista-head small{font-size:12px;font-weight:700;letter-spacing:1px;color:#e1ebff}
