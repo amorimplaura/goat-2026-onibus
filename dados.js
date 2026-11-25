@@ -132,12 +132,6 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
-    "nome": "Rafael Junqueira Gouthier",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Rafaela Teixeira Dias",
     "perse": "P3",
     "observacao": "",
