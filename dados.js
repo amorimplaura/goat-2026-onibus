@@ -132,12 +132,6 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
-    "nome": "Rafael Junqueira Gouthier",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Rafaela Teixeira Dias",
     "perse": "P3",
     "observacao": "",
@@ -2240,11 +2234,6 @@ const SERVOS = [
     "nome": "Valentina Cavallaro",
     "onibus": 7,
     "responsavel": true
-  },
-  {
-    "nome": "Arthur Rocha",
-    "onibus": 7,
-    "responsavel": false
   },
   {
     "nome": "Felipe Sarmento de Freitas",
