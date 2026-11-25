@@ -109,7 +109,7 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Maria Luísa Durso Gribel da Rocha",
-    "perse": "Não informada",
+    "perse": "P4",
     "observacao": "",
     "onibus": 1
   },
@@ -1328,7 +1328,7 @@ const PARTICIPANTES = [
   {
     "nome": "João Marcelo Vieira De Lima",
     "perse": "P2",
-    "observacao": "",
+    "observacao": "Somente volta — não embarca na ida",
     "onibus": 7
   },
   {
@@ -1453,7 +1453,7 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Vitor Modesto Guimarães Conceição",
-    "perse": "Não informada",
+    "perse": "P3",
     "observacao": "",
     "onibus": 7
   },
@@ -2068,7 +2068,8 @@ const SERVOS = [
   {
     "nome": "Helena Abramides",
     "onibus": 4,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Helena Faria",
@@ -2093,7 +2094,8 @@ const SERVOS = [
   {
     "nome": "Malu Paiva",
     "onibus": 4,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Manuela Lopes",
@@ -2123,7 +2125,8 @@ const SERVOS = [
   {
     "nome": "Ceci Melo",
     "onibus": 5,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Duda Araújo",
@@ -2168,7 +2171,8 @@ const SERVOS = [
   {
     "nome": "Polyana",
     "onibus": 5,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Rafaela (Anjo Camilla)",
@@ -2178,7 +2182,8 @@ const SERVOS = [
   {
     "nome": "Laura Mazzoli",
     "onibus": 6,
-    "responsavel": true
+    "responsavel": true,
+    "observacao": "Somente ida"
   },
   {
     "nome": "Luísa Braga",
@@ -2193,7 +2198,8 @@ const SERVOS = [
   {
     "nome": "Bruna Caram",
     "onibus": 6,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Camila Almeida",
@@ -2218,7 +2224,8 @@ const SERVOS = [
   {
     "nome": "Thais Desotti",
     "onibus": 6,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Túlio Vargas",
@@ -2293,7 +2300,8 @@ const SERVOS = [
   {
     "nome": "Matheus (Vini Jr)",
     "onibus": 8,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Miguel Botelho",
@@ -2313,7 +2321,8 @@ const SERVOS = [
   {
     "nome": "Bia Sansoni",
     "onibus": 9,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Clara Faria",
@@ -2343,7 +2352,8 @@ const SERVOS = [
   {
     "nome": "Nina",
     "onibus": 9,
-    "responsavel": false
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Rafaela de Castro",
