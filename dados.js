@@ -2242,11 +2242,6 @@ const SERVOS = [
     "responsavel": true
   },
   {
-    "nome": "Arthur Rocha",
-    "onibus": 7,
-    "responsavel": false
-  },
-  {
     "nome": "Felipe Sarmento de Freitas",
     "onibus": 7,
     "responsavel": false
