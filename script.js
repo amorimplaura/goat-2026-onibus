@@ -42,7 +42,7 @@ function mostrarResultado(crianca){
   '<h5 class="roster-group-title">SERVOS ('+equipe.length+')</h5><div class="passenger-list">'+equipe.map(p=>'<div class="passenger"><div><strong>'+esc(p.nome)+'</strong><small>Servo</small></div><span>'+esc(infoServo(p))+'</span></div>').join('')+'</div></div>';
  detalhe.insertAdjacentHTML("beforeend",'<button type="button" class="search-again">PESQUISAR OUTRA CRIANÇA ↗</button>');
  resultados.appendChild(detalhe);
- const reiniciar=()=>{busca.value="";resultados.replaceChildren();busca.focus()};
+ const reiniciar=()=>{busca.value="";resultados.replaceChildren();atualizarBotaoLimpar();busca.focus()};
  detalhe.querySelector(".change-search").addEventListener("click",reiniciar);
  detalhe.querySelector(".search-again").addEventListener("click",reiniciar);
 }
@@ -58,7 +58,11 @@ function abrir(n,destaque="",rolar=true){
   lista.querySelector(".close-list").addEventListener("click",()=>{lista.hidden=true;cards.querySelectorAll("[data-onibus]").forEach(b=>b.setAttribute("aria-pressed","false"))});
   if(rolar)lista.scrollIntoView({behavior:"auto",block:"start"});
 }
-busca.addEventListener("input",pesquisar);
+const limparPesquisa=document.querySelector("#limpar-pesquisa");
+function atualizarBotaoLimpar(){limparPesquisa.hidden=!busca.value.length}
+limparPesquisa.addEventListener("click",()=>{busca.value="";resultados.replaceChildren();atualizarBotaoLimpar();busca.focus()});
+busca.addEventListener("input",()=>{atualizarBotaoLimpar();pesquisar()});
+atualizarBotaoLimpar();
 cards.querySelectorAll("[data-onibus]").forEach(b=>b.addEventListener("click",()=>abrir(Number(b.dataset.onibus))));
 
 /* Atualizações contínuas, sem mudar o link enviado aos responsáveis.
