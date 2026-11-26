@@ -24,12 +24,6 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
-    "nome": "Clara Moreira Zanforlin",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Felipe De Aquino Lima Andrade Oliveira",
     "perse": "P4",
     "observacao": "",
@@ -1562,12 +1556,6 @@ const PARTICIPANTES = [
   {
     "nome": "Helena Kokaev De Castro Turci",
     "perse": "P2",
-    "observacao": "",
-    "onibus": 8
-  },
-  {
-    "nome": "Henrique Moreira Zanforlin",
-    "perse": "P0",
     "observacao": "",
     "onibus": 8
   },
