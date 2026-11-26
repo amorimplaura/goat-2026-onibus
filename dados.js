@@ -201,7 +201,7 @@ const PARTICIPANTES = [
     "nome": "Clara Fernanda Lima Reyes",
     "perse": "P4",
     "observacao": "",
-    "onibus": 2
+    "onibus": 1
   },
   {
     "nome": "Cristina Rezende Monteiro Turner Lapertosa",
@@ -693,7 +693,7 @@ const PARTICIPANTES = [
     "nome": "Julia Rodrigues De Sá Capanema Pedrosa",
     "perse": "P4",
     "observacao": "",
-    "onibus": 4
+    "onibus": 3
   },
   {
     "nome": "Júlia Varella Oliveira",
