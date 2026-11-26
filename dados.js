@@ -1664,7 +1664,7 @@ const PARTICIPANTES = [
   {
     "nome": "Ana Beatriz Leão Nogueira",
     "perse": "P1",
-    "observacao": "Somente ida — vai embora domingo de manhã",
+    "observacao": "Somente ida — volta domingo de manhã (não retorna no ônibus)",
     "onibus": 9
   },
   {
