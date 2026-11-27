@@ -1179,7 +1179,7 @@ const PARTICIPANTES = [
     "nome": "Pedro Antônio Gonçalves Gomes",
     "perse": "P3",
     "observacao": "",
-    "onibus": 6
+    "onibus": 5
   },
   {
     "nome": "Sofia Teresa Santos Diniz",
@@ -1647,7 +1647,7 @@ const PARTICIPANTES = [
     "nome": "Theo Bernardes Lamounier",
     "perse": "P0",
     "observacao": "",
-    "onibus": 8
+    "onibus": 5
   },
   {
     "nome": "Thiago Vianna de Oliveira Almeida",
@@ -1755,7 +1755,7 @@ const PARTICIPANTES = [
     "nome": "João Gonçalves Gomes",
     "perse": "P1",
     "observacao": "",
-    "onibus": 9
+    "onibus": 5
   },
   {
     "nome": "João Guilherme De Salles Van Lopes",
@@ -1952,6 +1952,11 @@ const SERVOS = [
   },
   {
     "nome": "Miguel Abreu",
+    "onibus": 1,
+    "responsavel": false
+  },
+  {
+    "nome": "Davi Fontes da Cunha Valadares",
     "onibus": 1,
     "responsavel": false
   },
