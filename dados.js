@@ -459,7 +459,7 @@ const PARTICIPANTES = [
     "nome": "Gabriela Aquino Rabello",
     "perse": "P4",
     "observacao": "",
-    "onibus": 3
+    "onibus": 2
   },
   {
     "nome": "Gabriela Malta Roberti",
