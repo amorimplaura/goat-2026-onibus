@@ -1879,7 +1879,7 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Manuela Franco Resende Windenguer",
-    "perse": "",
+    "perse": "P2",
     "observacao": "",
     "onibus": 8
   }
