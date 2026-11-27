@@ -2160,11 +2160,6 @@ const SERVOS = [
     "responsavel": false
   },
   {
-    "nome": "Maria Rita",
-    "onibus": 5,
-    "responsavel": false
-  },
-  {
     "nome": "Maria Trindade",
     "onibus": 5,
     "responsavel": false
