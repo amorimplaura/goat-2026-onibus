@@ -24,6 +24,18 @@ const PARTICIPANTES = [
     "onibus": 1
   },
   {
+    "nome": "Clara Fernanda Lima Reyes",
+    "perse": "P4",
+    "observacao": "",
+    "onibus": 1
+  },
+  {
+    "nome": "Clara Moreira Zanforlin",
+    "perse": "P2",
+    "observacao": "",
+    "onibus": 1
+  },
+  {
     "nome": "Felipe De Aquino Lima Andrade Oliveira",
     "perse": "P4",
     "observacao": "",
@@ -198,12 +210,6 @@ const PARTICIPANTES = [
     "onibus": 2
   },
   {
-    "nome": "Clara Fernanda Lima Reyes",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
     "nome": "Cristina Rezende Monteiro Turner Lapertosa",
     "perse": "P4",
     "observacao": "",
@@ -229,6 +235,12 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Francisco Fiorino Reis Procópio",
+    "perse": "P4",
+    "observacao": "",
+    "onibus": 2
+  },
+  {
+    "nome": "Gabriela Aquino Rabello",
     "perse": "P4",
     "observacao": "",
     "onibus": 2
@@ -456,12 +468,6 @@ const PARTICIPANTES = [
     "onibus": 3
   },
   {
-    "nome": "Gabriela Aquino Rabello",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 2
-  },
-  {
     "nome": "Gabriela Malta Roberti",
     "perse": "P4",
     "observacao": "",
@@ -511,6 +517,12 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Júlia Cançado Santos",
+    "perse": "P4",
+    "observacao": "",
+    "onibus": 3
+  },
+  {
+    "nome": "Julia Rodrigues De Sá Capanema Pedrosa",
     "perse": "P4",
     "observacao": "",
     "onibus": 3
@@ -690,12 +702,6 @@ const PARTICIPANTES = [
     "onibus": 4
   },
   {
-    "nome": "Julia Rodrigues De Sá Capanema Pedrosa",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 3
-  },
-  {
     "nome": "Júlia Varella Oliveira",
     "perse": "P4",
     "observacao": "",
@@ -703,7 +709,7 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Laura Ayumi Bicalho Fukino",
-    "perse": "P4",
+    "perse": "P3",
     "observacao": "",
     "onibus": 4
   },
@@ -739,12 +745,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Lucas Araújo De Paula Castro",
-    "perse": "P4",
-    "observacao": "",
-    "onibus": 4
-  },
-  {
-    "nome": "Lucas Fernandes Raposo",
     "perse": "P4",
     "observacao": "",
     "onibus": 4
@@ -829,12 +829,6 @@ const PARTICIPANTES = [
   },
   {
     "nome": "Bruna Silva Duarte",
-    "perse": "P3",
-    "observacao": "",
-    "onibus": 5
-  },
-  {
-    "nome": "Camila Yunes Corrêa Pinto",
     "perse": "P3",
     "observacao": "",
     "onibus": 5
@@ -1322,7 +1316,7 @@ const PARTICIPANTES = [
   {
     "nome": "João Marcelo Vieira De Lima",
     "perse": "P2",
-    "observacao": "Somente volta — não embarca na ida",
+    "observacao": "",
     "onibus": 7
   },
   {
@@ -1560,6 +1554,12 @@ const PARTICIPANTES = [
     "onibus": 8
   },
   {
+    "nome": "Henrique Moreira Zanforlin",
+    "perse": "P0",
+    "observacao": "",
+    "onibus": 8
+  },
+  {
     "nome": "Henrique Nascimento Silva",
     "perse": "P2",
     "observacao": "",
@@ -1610,6 +1610,12 @@ const PARTICIPANTES = [
   {
     "nome": "Luna Vieira De Araújo",
     "perse": "P0",
+    "observacao": "",
+    "onibus": 8
+  },
+  {
+    "nome": "Manuela Franco Resende Windenguer",
+    "perse": "P2",
     "observacao": "",
     "onibus": 8
   },
@@ -1864,24 +1870,6 @@ const PARTICIPANTES = [
     "perse": "P2",
     "observacao": "",
     "onibus": 9
-  },
-  {
-    "nome": "Clara Moreira Zanforlin",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 1
-  },
-  {
-    "nome": "Henrique Moreira Zanforlin",
-    "perse": "P0",
-    "observacao": "",
-    "onibus": 8
-  },
-  {
-    "nome": "Manuela Franco Resende Windenguer",
-    "perse": "P2",
-    "observacao": "",
-    "onibus": 8
   }
 ];
 
@@ -1920,6 +1908,12 @@ const SERVOS = [
     "nome": "Bruna Pinheiro Branco",
     "onibus": 1,
     "responsavel": false
+  },
+  {
+    "nome": "Bruno Abdo",
+    "onibus": 1,
+    "responsavel": false,
+    "observacao": "Somente volta"
   },
   {
     "nome": "Camila Bicalho",
@@ -1970,6 +1964,11 @@ const SERVOS = [
     "nome": "Rafa Souza",
     "onibus": 2,
     "responsavel": true
+  },
+  {
+    "nome": "Fernanda Tavares Paulino",
+    "onibus": 2,
+    "responsavel": false
   },
   {
     "nome": "João Pedro Ribas",
@@ -2033,11 +2032,6 @@ const SERVOS = [
   },
   {
     "nome": "Laura Duarte",
-    "onibus": 3,
-    "responsavel": false
-  },
-  {
-    "nome": "Mariana Guimarães",
     "onibus": 3,
     "responsavel": false
   },
@@ -2135,11 +2129,6 @@ const SERVOS = [
     "observacao": "Somente volta"
   },
   {
-    "nome": "Duda Araújo",
-    "onibus": 5,
-    "responsavel": false
-  },
-  {
     "nome": "Fábio",
     "onibus": 5,
     "responsavel": false
@@ -2181,13 +2170,12 @@ const SERVOS = [
     "responsavel": false
   },
   {
-    "nome": "Laura Mazzoli",
+    "nome": "Luísa Braga",
     "onibus": 6,
-    "responsavel": true,
-    "observacao": "Somente ida"
+    "responsavel": true
   },
   {
-    "nome": "Luísa Braga",
+    "nome": "Mariana Guimarães",
     "onibus": 6,
     "responsavel": true
   },
@@ -2199,8 +2187,7 @@ const SERVOS = [
   {
     "nome": "Bruna Caram",
     "onibus": 6,
-    "responsavel": false,
-    "observacao": "Somente volta"
+    "responsavel": false
   },
   {
     "nome": "Camila Almeida",
@@ -2214,11 +2201,6 @@ const SERVOS = [
   },
   {
     "nome": "Julia Pimentel",
-    "onibus": 6,
-    "responsavel": false
-  },
-  {
-    "nome": "Rafael Baeta",
     "onibus": 6,
     "responsavel": false
   },
@@ -2301,8 +2283,7 @@ const SERVOS = [
   {
     "nome": "Matheus (Vini Jr)",
     "onibus": 8,
-    "responsavel": false,
-    "observacao": "Somente volta"
+    "responsavel": false
   },
   {
     "nome": "Miguel Botelho",
@@ -2322,8 +2303,7 @@ const SERVOS = [
   {
     "nome": "Bia Sansoni",
     "onibus": 9,
-    "responsavel": false,
-    "observacao": "Somente volta"
+    "responsavel": false
   },
   {
     "nome": "Clara Faria",
@@ -2337,6 +2317,11 @@ const SERVOS = [
   },
   {
     "nome": "Laura Jacob",
+    "onibus": 9,
+    "responsavel": false
+  },
+  {
+    "nome": "Letícia Bessa",
     "onibus": 9,
     "responsavel": false
   },
