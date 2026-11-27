@@ -1864,6 +1864,24 @@ const PARTICIPANTES = [
     "perse": "P2",
     "observacao": "",
     "onibus": 9
+  },
+  {
+    "nome": "Clara Moreira Zanforlin",
+    "perse": "P2",
+    "observacao": "",
+    "onibus": 1
+  },
+  {
+    "nome": "Henrique Moreira Zanforlin",
+    "perse": "P0",
+    "observacao": "",
+    "onibus": 8
+  },
+  {
+    "nome": "Manuela Franco Resende Windenguer",
+    "perse": "",
+    "observacao": "",
+    "onibus": 8
   }
 ];
 
